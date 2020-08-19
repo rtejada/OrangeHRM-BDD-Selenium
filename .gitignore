@@ -1,0 +1,5 @@
+counduit/tests/.env
+suitecrm/tests/.env
+
+.idea/
+.idea
