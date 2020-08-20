@@ -3,14 +3,14 @@ from dotenv import load_dotenv
 import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from lib.pages.orange_start_session import StartSessionPage
-from lib.pages.orange_add_emplyees import AdminEmployees
+from lib.pages.init_session import StartSessionPage
+from lib.pages.add_employees import AdminEmployees
 
 use_step_matcher("re")
 
 
 @given("Un usuario con permisos esta registrado")
-def step_impl(context):
+def init_session(context):
 
     load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
 
@@ -27,17 +27,22 @@ def step_impl(context):
 
 
 @when("Añade empleados")
-def step_impl(context):
+def add_new_employee(context):
 
     employee = AdminEmployees(context.driver)
     employee.select_menu()
     employee.add_data()
-    context.name = employee.get_employee()
+    name = employee.get_employee()
+    context.employee = employee
+    context.name = name
 
 
 @then("confirma datos registrados")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+def confirm_registration(context):
+
+    found = context.employee.search_name_employee(context.name)
+
+    assert found
+
+
+

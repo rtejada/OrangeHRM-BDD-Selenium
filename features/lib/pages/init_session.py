@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from lib.pages.orange_base_page import OrangeBasePage
+from lib.pages.base_page import OrangeBasePage
 import os
 
 

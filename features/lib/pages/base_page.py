@@ -31,6 +31,7 @@ class OrangeBasePage:
         element.send_keys(text)
 
     def click_button(self, selector):
+        #self.wait_button_clickable(selector)
         element = self.driver.find_element(*selector)
         element.click()
 
@@ -57,12 +58,12 @@ class OrangeBasePage:
         action.click()
         action.perform()
 
-    def wait_button_clickable(self, locator):
-        wait = WebDriverWait(self.driver, 10, poll_frequency=1)
+    def wait_button_clickable(self, locator, time=5):
+        wait = WebDriverWait(self.driver, time, poll_frequency=1)
         wait.until(EC.element_to_be_clickable(locator))
 
-    def wait_selector_visible(self, locator):
-        wait = WebDriverWait(self.driver, 10, poll_frequency=1)
+    def wait_selector_visible(self, locator, time=5):
+        wait = WebDriverWait(self.driver, time, poll_frequency=1)
         wait.until(EC.visibility_of_element_located(locator))
 
     def window_scroll(self):
