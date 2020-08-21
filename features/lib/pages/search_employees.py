@@ -1,14 +1,10 @@
 from lib.pages.base_page import OrangeBasePage
-from selenium.webdriver.common.keys import Keys
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
 
 class OrangeSiteSearchEmployee(OrangeBasePage):
 
     menu_selector = ''
-    menu_selector_id = ''
+    personal_detail = ''
     result_table = ''
     table_rows_selector = ''
     name_selector = ''
@@ -17,11 +13,13 @@ class OrangeSiteSearchEmployee(OrangeBasePage):
 
     def search_element(self, search_item):
 
+        self.wait_selector_visible(self.personal_detail)
+
         self.wait_button_clickable(self.menu_selector)
 
-        time.sleep(2)
-
         self.click_button(self.menu_selector)
+
+        self.wait_selector_visible(self.result_table)
 
         self.wait_button_clickable(self.result_table)
 

@@ -12,7 +12,6 @@ class AdminEmployees(OrangeBasePage):
     MODULE_INFO_PERSONAL = (By.LINK_TEXT, 'Módulo de Información Personal')
     EMPLOYEE = 'menu_pim_addEmployee'
     ADD_EMPLOYEE = (By.ID, EMPLOYEE)
-    VISIBLE_SCREEN = (By.XPATH, '//*[@id="content"]/div/div[1]/h1')
     FIRST_NAME = (By.ID, 'firstName')
     MIDDLE_NAME = (By.ID, 'middleName')
     LAST_NAME = (By.ID, 'lastName')
@@ -22,8 +21,7 @@ class AdminEmployees(OrangeBasePage):
     PASS_ALIAS = (By.ID, 'user_password')
     RE_ALIAS = (By.ID, 're_password')
     SAVE_EMPLOYEE = (By.ID, 'btnSave')
-
-    LIST_EMPLOYEES_ID = '//*[@id="menu_pim_viewEmployeeList"]'
+    PERSONAL_DETAILS = (By.ID, 'pdMainContainer')
     LIST_EMPLOYEES = (By.XPATH, '//*[@id="menu_pim_viewEmployeeList"]')
     VISIBLE_TABLE_SCREEN = (By.XPATH, '//*[@id="resultTable"]/thead/tr/th[1]//input')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
@@ -82,9 +80,9 @@ class AdminEmployees(OrangeBasePage):
     def search_name_employee(self, name):
 
         search_contact = OrangeSiteSearchEmployee(self.driver)
-
+        search_contact.personal_detail = self.PERSONAL_DETAILS
         search_contact.menu_selector = self.LIST_EMPLOYEES
-        #search_contact.menu_selector_id = self.LIST_EMPLOYEES_ID
+
         search_contact.result_table = self.VISIBLE_TABLE_SCREEN
         search_contact.table_rows_selector = self.TABLE_ROWS_SELECTOR
         search_contact.col_selector = self.COL_SELECTOR
