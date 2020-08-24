@@ -5,6 +5,9 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import random
+import string
+
 
 class OrangeBasePage:
 
@@ -78,6 +81,8 @@ class OrangeBasePage:
         #Si quieres subir de nivel, usa esto, otra vez usé aquí "-500", puedes variar según su uso..
 
         self.driver.execute_script("scrollBy(0,-" + str(offset) + ");")
+
+
 
 
 

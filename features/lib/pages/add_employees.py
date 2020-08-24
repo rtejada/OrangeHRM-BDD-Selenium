@@ -1,8 +1,9 @@
 from lib.pages.base_page import OrangeBasePage
 from lib.pages.search_employees import OrangeSiteSearchEmployee
 from selenium.webdriver.common.by import By
-import csv
-import os
+import random
+import string
+from random_word import RandomWords
 from random import randint
 
 
@@ -27,21 +28,13 @@ class AdminEmployees(OrangeBasePage):
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
     NAME_SELECTOR = '//*[@id="resultTable"]/tbody/'
     COL_SELECTOR = '/td[3]//a'
-
-    def __init__(self, driver):
-        super().__init__(driver)
-
-        file = open(os.getcwd() + "/features/lib/data/orange_employees.csv")
-
-        content = csv.reader(file, delimiter=',')
-        self.EMPLOYEES = list(content)
-        file.close()
-
-        self.NAME = self.EMPLOYEES[1][1] + '-' + str(randint(1000, 2000))
-        self.SURNAMES = self.EMPLOYEES[1][3] + '-' + str(randint(1000, 2000))
-        self.USER_NAME = self.EMPLOYEES[1][4] + str(randint(2000, 3000))
-        self.ID = self.EMPLOYEES[1][0] + '-' + str(randint(10000, 100000))
-        self.NAME_EMPLOYEE = self.NAME + ' ' + self.EMPLOYEES[1][2]
+    employee_code = ''
+    first_name = ''
+    middle_name = ''
+    last_name = ''
+    alias = ''
+    pwd_alias = ''
+    name_employee = ''
 
     def select_menu(self):
 
@@ -51,31 +44,41 @@ class AdminEmployees(OrangeBasePage):
 
         self.click_by_javascript(self.EMPLOYEE)
 
-    def add_data(self):
+    def add_data(self, cod, p_nombre, s_nombre, apellidos, usu, pwd):
+
+        r = RandomWords()
+        self.first_name = p_nombre + str(r.get_random_word())
+        self.middle_name = s_nombre + str(r.get_random_word())
+        self.last_name = apellidos + str(r.get_random_word())
+        self.alias = usu + str(randint(20000, 300000))
+        self.pwd_alias = pwd + str(randint(2000, 30000))
+        self.employee_code = cod + str(randint(100000, 20000000))
+
+        self.name_employee = self.first_name + ' ' + self.middle_name
 
         self.wait_button_clickable(self.FIRST_NAME)
 
-        self.fill_text_field(self.FIRST_NAME, self.NAME)
+        self.fill_text_field(self.FIRST_NAME, self.first_name)
 
-        self.fill_text_field(self.MIDDLE_NAME, self.EMPLOYEES[1][2])
+        self.fill_text_field(self.MIDDLE_NAME, self.middle_name)
 
-        self.fill_text_field(self.LAST_NAME, self.SURNAMES)
+        self.fill_text_field(self.LAST_NAME, self.last_name)
 
-        self.fill_text_field(self.EMPLOYEE_ID, self.ID)
+        self.fill_text_field(self.EMPLOYEE_ID, self.employee_code)
 
         self.click_button(self.CHECK_LOGIN)
 
-        self.fill_text_field(self.ALIAS, self.USER_NAME)
+        self.fill_text_field(self.ALIAS, self.alias)
 
-        self.fill_text_field(self.PASS_ALIAS, self.EMPLOYEES[1][5])
+        self.fill_text_field(self.PASS_ALIAS, self.pwd_alias)
 
-        self.fill_text_field(self.RE_ALIAS, self.EMPLOYEES[1][5])
+        self.fill_text_field(self.RE_ALIAS, self.pwd_alias)
 
         self.send_enter_key(self.SAVE_EMPLOYEE)
 
     def get_employee(self):
 
-        return self.NAME_EMPLOYEE
+        return self.name_employee
 
     def search_name_employee(self, name):
 
