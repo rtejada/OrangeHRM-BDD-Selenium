@@ -71,20 +71,17 @@ def search_data_registered_employee(context):
 @step("Edita los datos personales")
 def step_impl(context):
 
-    context.edit.data_employee()
+    new_id = context.edit.data_employee()
+    context.new_id = new_id
 
 
 @step("Añade archivos adjuntos")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+def adding_attachments(context):
+
+    context.edit.add_image()
 
 
 @then("Confirma que los datos quedaron registrado")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
+def confirm_data_register(context):
+
     pass

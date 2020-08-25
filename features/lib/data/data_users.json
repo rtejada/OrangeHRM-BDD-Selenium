@@ -1,6 +1,7 @@
 {
   "id_employee": "D19678480",
-  "other_id": "ID",
+  "new_id_employee": "ID",
+  "other_id": "OD",
   "card_number": "I",
   "month_expiration": "Dec",
   "year_expiration" : "2030",

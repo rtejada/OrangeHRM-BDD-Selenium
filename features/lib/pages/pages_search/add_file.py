@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import os
 
 
-class SuitecrmAdd:
+class AddFile:
 
     SEARCH_BUTTON = (By.ID, 'search_form_submit')
 
@@ -12,8 +12,8 @@ class SuitecrmAdd:
 
         self.driver = driver
         self.select_file = ''
-        self.file_name = 'imagen.png'
-        self.path = os.getenv("DATA_PATH")
+        self.file_name = 'image1.jpeg'
+        self.path = os.getcwd() + "/features/lib/data/images"
 
         """:type: Chrome"""
 
@@ -21,3 +21,8 @@ class SuitecrmAdd:
         file_add = self.driver.find_element(*self.select_file)
         self.driver.execute_script("arguments[0].style.display = 'block';", file_add)
         file_add.send_keys(self.path + self.file_name)
+
+    def add_img(self):
+
+        self.driver.find_element(*self.select_file).send_keys(self.path + self.file_name)
+
