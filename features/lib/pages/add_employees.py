@@ -1,15 +1,12 @@
-from lib.pages.base_page import OrangeBasePage
-from lib.pages.search_employees import OrangeSiteSearchEmployee
+from lib.pages.pages_search.base_page import OrangeBasePage
+from lib.pages.pages_search.search_dates import OrangeSiteSearchEmployee
 from selenium.webdriver.common.by import By
-import random
-import string
 from random_word import RandomWords
 from random import randint
 
 
 class AdminEmployees(OrangeBasePage):
 
-    EMPLOYEES = ''
     MODULE_INFO_PERSONAL = (By.LINK_TEXT, 'Módulo de Información Personal')
     EMPLOYEE = 'menu_pim_addEmployee'
     ADD_EMPLOYEE = (By.ID, EMPLOYEE)
@@ -78,7 +75,7 @@ class AdminEmployees(OrangeBasePage):
 
     def get_employee(self):
 
-        return self.name_employee
+        return self.name_employee, self.employee_code
 
     def search_name_employee(self, name):
 

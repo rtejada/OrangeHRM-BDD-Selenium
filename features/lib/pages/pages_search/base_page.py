@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
@@ -37,6 +38,10 @@ class OrangeBasePage:
         #self.wait_button_clickable(selector)
         element = self.driver.find_element(*selector)
         element.click()
+
+    def click_link_text(self, link_data):
+        click_name = self.driver.find_element(By.PARTIAL_LINK_TEXT, link_data)
+        click_name.click()
 
     def click_by_javascript(self, id):
 

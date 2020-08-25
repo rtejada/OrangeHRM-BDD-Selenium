@@ -1,4 +1,3 @@
-
 from behave import *
 from dotenv import load_dotenv
 import os
@@ -6,11 +5,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.add_employees import AdminEmployees
+from lib.pages.edit_data_employee import EditDataEmployees
 
 use_step_matcher("re")
 
-@given("un usuario registrado")
-def step_impl(context):
+
+@given("Un usuario registrado")
+def authorized_user(context):
 
     load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
 
@@ -23,7 +24,7 @@ def step_impl(context):
 
 
 @given("El usuario tiene permisos de administración\.")
-def step_impl(context):
+def user_with_admin_permissions(context):
 
     start_session = StartSessionPage(context.driver)
     start_session.load()
@@ -31,7 +32,8 @@ def step_impl(context):
 
 
 @when('Añade nuevo empleados “(?P<cod>.+)”, "(?P<p_nombre>.+)", "(?P<s_nombre>.+)", "(?P<apellidos>.+)", "(?P<usu>.+)", "(?P<pwd>.+)"')
-def step_impl(context, cod, p_nombre, s_nombre, apellidos, usu, pwd):
+def add_new_employee(context, cod, p_nombre, s_nombre, apellidos, usu, pwd):
+
     context.request_cod = cod
     context.request_p_nombre = p_nombre
     context.request_s_nombre = s_nombre
@@ -43,32 +45,33 @@ def step_impl(context, cod, p_nombre, s_nombre, apellidos, usu, pwd):
     employee.select_menu()
     employee.add_data(context.request_cod, context.request_p_nombre, context.request_s_nombre, context.request_apellidos,
                       context.request_usu, context.request_pwd)
-    name = employee.get_employee()
+
+    name, code = employee.get_employee()
     context.employee = employee
     context.name = name
 
+
 @then("confirma datos del nuevo empleado")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+def search_and_confirm_employee_data(context):
+
+    found = context.employee.search_name_employee(context.name)
+
+    assert found
 
 
 @when("Busca el nuevo empleado")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+def search_data_registered_employee(context):
+
+    edit = EditDataEmployees(context.driver)
+    edit.select_menu()
+    edit.search_data_employee()
+    context.edit = edit
 
 
 @step("Edita los datos personales")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+
+    context.edit.data_employee()
 
 
 @step("Añade archivos adjuntos")

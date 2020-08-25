@@ -1,4 +1,4 @@
-from lib.pages.base_page import OrangeBasePage
+from lib.pages.pages_search.base_page import OrangeBasePage
 
 
 class OrangeSiteSearchEmployee(OrangeBasePage):

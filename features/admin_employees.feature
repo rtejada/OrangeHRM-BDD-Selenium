@@ -2,7 +2,7 @@
 Feature: Módulo de Información Personal.
 
   Background:
-    Given un usuario registrado
+    Given Un usuario registrado
 
   Scenario Outline: Agregar nuevos empleados
     Given El usuario tiene permisos de administración.
