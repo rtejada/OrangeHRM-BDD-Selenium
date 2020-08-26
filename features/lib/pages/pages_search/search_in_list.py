@@ -1,7 +1,7 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
 
 
-class OrangeSiteSearchEmployee(OrangeBasePage):
+class OrangeSiteSearchList(OrangeBasePage):
 
     menu_selector = ''
     personal_detail = ''

@@ -6,7 +6,7 @@ import json
 import uuid
 
 
-class DataEmployee(OrangeBasePage):
+class DataEmployeeEdit(OrangeBasePage):
 
     RESULT_DATA = (By.ID, 'tableWrapper')
     BUTTON_EDIT = (By.ID, 'btnSave')
@@ -33,7 +33,7 @@ class DataEmployee(OrangeBasePage):
         with open(os.getcwd() + "/features/lib/data/data_users.json") as file:
             self.DATA_EMPLOYEE = json.load(file)
 
-        self.ID = self.DATA_EMPLOYEE['new_id_employee'] + str(randint(1, 900000))
+        self.ID = self.DATA_EMPLOYEE['new_id_employee'] + str(randint(1, 90000000))
         self.ADDITIONAL_ID = self.DATA_EMPLOYEE['other_id'] + str(randint(1, 90000000))
         self.CARD_NUMBER = self.DATA_EMPLOYEE['card_number'] + str(uuid.getnode())
         self.CODE_EMPLOYEE = self.DATA_EMPLOYEE['id_employee']
@@ -44,13 +44,15 @@ class DataEmployee(OrangeBasePage):
         self.MONTH_BIRTH = self.DATA_EMPLOYEE['month_birth']
         self.YEAR_BIRTH = self.DATA_EMPLOYEE['year_birth']
 
-    def add_data(self):
+    def data_employee(self):
 
         self.wait_button_clickable(self.RESULT_DATA)
 
         self.click_link_text(self.CODE_EMPLOYEE)
 
         self.click_button(self.BUTTON_EDIT)
+
+        self.fill_text_field(self.NEW_ID, self.ID)
 
         self.fill_text_field(self.OTHER_ID, self.ADDITIONAL_ID)
 

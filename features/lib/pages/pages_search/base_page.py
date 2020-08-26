@@ -37,7 +37,7 @@ class OrangeBasePage:
         element.click()
 
     def click_link_text(self, link_data):
-        click_name = self.driver.find_element(By.PARTIAL_LINK_TEXT, link_data)
+        click_name = self.driver.find_element(By.LINK_TEXT, link_data)
         click_name.click()
 
     def click_by_javascript(self, id):

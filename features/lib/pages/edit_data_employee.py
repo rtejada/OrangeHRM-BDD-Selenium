@@ -1,6 +1,6 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
-from lib.pages.pages_search.search_items import SearchItems
-from lib.pages.data_employee import DataEmployee
+from lib.pages.pages_search.search_by_id import OrangeSiteSearchId
+from lib.pages.data_employee import DataEmployeeEdit
 from lib.pages.pages_search.add_file import AddFile
 from selenium.webdriver.common.by import By
 import os
@@ -17,18 +17,10 @@ class EditDataEmployees(OrangeBasePage):
     ID_EMP_SEARCH = (By.ID, 'empsearch_id')
     SEARCH_EMPLOYEE = (By.ID, 'searchBtn')
 
-    VISIBLE_SCREEN = (By.XPATH, '//*[@id="attachmentList"]/div/h1')
-    SCREEN_SELECT_FILE = (By.ID, 'addPaneAttachments')
-    BUTTON_SELECT_FILE = (By.ID, 'ufile')
-    BUTTON_ADD_LOAD = (By.ID, 'btnAddAttachment')
-
     PERSONAL_DETAILS = (By.ID, 'pdMainContainer')
-    LIST_EMPLOYEES = (By.XPATH, '//*[@id="menu_pim_viewEmployeeList"]')
+    LIST_EMPLOYEES = (By.ID, 'menu_pim_viewEmployeeList')
     IDENTIFICATION = (By.ID, 'empsearch_id')
-    VISIBLE_TABLE_SCREEN = (By.XPATH, '//*[@id="resultTable"]/thead/tr/th[1]//input')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
-    NAME_SELECTOR = '//*[@id="resultTable"]/tbody/'
-    COL_SELECTOR = '/td[3]//a'
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -52,43 +44,28 @@ class EditDataEmployees(OrangeBasePage):
 
         self.click_button(self.SEARCH_EMPLOYEE)
 
-    def data_employee(self):
+    def item_employee(self):
 
-        edit = DataEmployee(self.driver)
-        edit.add_data()
+        edit = DataEmployeeEdit(self.driver)
+        edit.data_employee()
         new_id = edit.get_id()
         return new_id
 
     def add_image(self):
 
-        self.wait_selector_visible(self.VISIBLE_SCREEN)
-
-        self.click_button(self.BUTTON_ADD_LOAD)
-
-        self.wait_selector_visible(self.SCREEN_SELECT_FILE)
-
-        self.wait_button_clickable(self.SCREEN_SELECT_FILE)
-
         upload_file = AddFile(self.driver)
-        upload_file.select_file = self.SCREEN_SELECT_FILE
         upload_file.add_img()
 
-        self.wait_button_clickable(self.BUTTON_ADD_LOAD)
+    def search_new_id_employee(self, id_employee):
 
-        self.send_enter_key(self.BUTTON_ADD_LOAD)
+        search_id = OrangeSiteSearchId(self.driver)
+        search_id.personal_detail = self.PERSONAL_DETAILS
+        search_id.menu_selector = self.LIST_EMPLOYEES
+        search_id.employee = self.IDENTIFICATION
+        search_id.identification = id_employee
+        search_id.table_row_selector = self.TABLE_ROWS_SELECTOR
 
-    def search_new_id_employee(self, name):
-
-        search_id = SearchItems(self.driver)
-        search_id.select_menu = self.PERSONAL_DETAILS
-        search_id.access_option = self.LIST_EMPLOYEES
-        search_id.item_employee = self.IDENTIFICATION
-
-        press_filter = ''
-        press_rapid_filter = ''
-        visible_selector = ''
-        contact_name = ''
-
+        value = search_id.employee_id()
         return value
 
 

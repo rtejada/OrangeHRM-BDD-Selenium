@@ -65,13 +65,14 @@ def search_data_registered_employee(context):
     edit = EditDataEmployees(context.driver)
     edit.select_menu()
     edit.search_data_employee()
+
     context.edit = edit
 
 
 @step("Edita los datos personales")
-def step_impl(context):
+def edit_personal_data(context):
 
-    new_id = context.edit.data_employee()
+    new_id = context.edit.item_employee()
     context.new_id = new_id
 
 
@@ -84,4 +85,6 @@ def adding_attachments(context):
 @then("Confirma que los datos quedaron registrado")
 def confirm_data_register(context):
 
-    pass
+    found = context.edit.search_new_id_employee(context.new_id)
+
+    assert found

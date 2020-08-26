@@ -1,8 +1,9 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
-from lib.pages.pages_search.search_dates import OrangeSiteSearchEmployee
+from lib.pages.pages_search.search_in_list import OrangeSiteSearchList
 from selenium.webdriver.common.by import By
 from random_word import RandomWords
 from random import randint
+import uuid
 
 
 class AdminEmployees(OrangeBasePage):
@@ -43,10 +44,12 @@ class AdminEmployees(OrangeBasePage):
 
     def add_data(self, cod, p_nombre, s_nombre, apellidos, usu, pwd):
 
-        r = RandomWords()
-        self.first_name = p_nombre + str(r.get_random_word())
-        self.middle_name = s_nombre + str(r.get_random_word())
-        self.last_name = apellidos + str(r.get_random_word())
+        guid_let = str(uuid.uuid4())
+        keywords = guid_let.split("-")
+
+        self.first_name = p_nombre + keywords[0]
+        self.middle_name = s_nombre + keywords[1]
+        self.last_name = apellidos + keywords[4]
         self.alias = usu + str(randint(20000, 300000))
         self.pwd_alias = pwd + str(randint(2000, 30000))
         self.employee_code = cod + str(randint(100000, 20000000))
@@ -79,7 +82,7 @@ class AdminEmployees(OrangeBasePage):
 
     def search_name_employee(self, name):
 
-        search_contact = OrangeSiteSearchEmployee(self.driver)
+        search_contact = OrangeSiteSearchList(self.driver)
         search_contact.personal_detail = self.PERSONAL_DETAILS
         search_contact.menu_selector = self.LIST_EMPLOYEES
 
