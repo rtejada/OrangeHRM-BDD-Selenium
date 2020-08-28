@@ -14,9 +14,15 @@ Feature: Módulo de Información Personal.
     |D|A|B|C|Usu|$%Orange%|
 
 
-  Scenario: Listar y Editar Datos Empleado
+  Scenario Outline: Listar y Editar Datos Empleado
     Given El usuario tiene permisos de administración.
-    When Busca el nuevo empleado
+    When Busca el nuevo empleado “<nombre>”
     And Edita los datos personales
     And Añade archivos adjuntos
     Then Confirma que los datos quedaron registrado
+
+    Examples:
+    |nombre|
+    |AHawking Bwater-blue|
+    |Acounselled Bsexualized|
+    |Ainconvenienced Brestriping|

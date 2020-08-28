@@ -16,7 +16,7 @@ def authorized_user(context):
     load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
 
     arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(",")
+    args = arguments.split(";")
     options = Options()
     for i in args:
         options.add_argument(i)
@@ -59,12 +59,12 @@ def search_and_confirm_employee_data(context):
     assert found
 
 
-@when("Busca el nuevo empleado")
-def search_data_registered_employee(context):
-
+@when('Busca el nuevo empleado “(?P<nombre>.+)”')
+def search_data_registered_employee(context, nombre):
+    context.name = nombre
     edit = EditDataEmployees(context.driver)
     edit.select_menu()
-    edit.search_data_employee()
+    edit.search_data_employee(context.name)
 
     context.edit = edit
 
@@ -72,7 +72,7 @@ def search_data_registered_employee(context):
 @step("Edita los datos personales")
 def edit_personal_data(context):
 
-    new_id = context.edit.item_employee()
+    new_id = context.edit.item_employee(context.name)
     context.new_id = new_id
 
 
@@ -88,3 +88,5 @@ def confirm_data_register(context):
     found = context.edit.search_new_id_employee(context.new_id)
 
     assert found
+
+

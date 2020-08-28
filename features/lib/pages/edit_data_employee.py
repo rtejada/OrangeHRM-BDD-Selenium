@@ -14,13 +14,13 @@ class EditDataEmployees(OrangeBasePage):
     BUTTON_LIST_EMPLOYEES = (By.ID, EMPLOYEE)
 
     NAME_EMPLOYEE = (By.ID, 'empsearch_employee_name_empName')
-    ID_EMP_SEARCH = (By.ID, 'empsearch_id')
     SEARCH_EMPLOYEE = (By.ID, 'searchBtn')
 
     PERSONAL_DETAILS = (By.ID, 'pdMainContainer')
     LIST_EMPLOYEES = (By.ID, 'menu_pim_viewEmployeeList')
     IDENTIFICATION = (By.ID, 'empsearch_id')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
+    name_employee = ''
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -38,16 +38,16 @@ class EditDataEmployees(OrangeBasePage):
 
         self.click_by_javascript(self.EMPLOYEE)
 
-    def search_data_employee(self):
+    def search_data_employee(self, name):
 
-        self.fill_text_field(self.ID_EMP_SEARCH, self.CODE_EMPLOYEE)
+        self.fill_text_field(self.NAME_EMPLOYEE, name)
 
         self.click_button(self.SEARCH_EMPLOYEE)
 
-    def item_employee(self):
+    def item_employee(self, name):
 
         edit = DataEmployeeEdit(self.driver)
-        edit.data_employee()
+        edit.data_employee(name)
         new_id = edit.get_id()
         return new_id
 

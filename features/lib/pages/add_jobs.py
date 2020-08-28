@@ -1,4 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
+from lib.pages.pages_search.search_according_job_options import SearchInJobOptions
 from selenium.webdriver.common.by import By
 import os
 
@@ -17,6 +18,7 @@ class AddNewJobs(OrangeBasePage):
     NOTE = (By.ID, 'jobTitle_note')
     BUTTON_SAVE = (By.ID, 'btnSave')
     path = os.getcwd() + "/features/lib/data/images/"
+
     VISIBLE_TABLE_SCREEN = (By.XPATH, '//*[@id="resultTable"]/thead/tr/th[1]//input')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
     NAME_SELECTOR = '//*[@id="resultTable"]/tbody/'
@@ -50,18 +52,11 @@ class AddNewJobs(OrangeBasePage):
 
     def search_jobs(self, search_item):
 
-        self.wait_selector_visible(self.VISIBLE_TABLE_SCREEN)
-        self.wait_button_clickable(self.VISIBLE_TABLE_SCREEN)
-
-        rows_count = len(self.driver.find_elements(*self.TABLE_ROWS_SELECTOR))
-
-        for a in range(1, rows_count + 1):
-            value = self.driver.find_element_by_xpath(self.NAME_SELECTOR + 'tr[' + str(a) + ']' + self.COL_SELECTOR)
-
-            self.LIST_JOBS.append(value.text)
-
-        if search_item in self.LIST_JOBS:
-            return True
-        else:
-            return False
+        search = SearchInJobOptions(self.driver)
+        search.visible_selector = self.VISIBLE_TABLE_SCREEN
+        search.table_rows_selector = self.TABLE_ROWS_SELECTOR
+        search.file_selector = self.NAME_SELECTOR
+        search.col_selector = self.COL_SELECTOR
+        value = search.added_job_option(search_item)
+        return value
 

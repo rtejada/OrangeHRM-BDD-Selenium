@@ -14,7 +14,7 @@ def step_impl(context):
 
     load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
     arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(",")
+    args = arguments.split(";")
     options = Options()
     for i in args:
         options.add_argument(i)

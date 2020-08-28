@@ -44,11 +44,11 @@ class DataEmployeeEdit(OrangeBasePage):
         self.MONTH_BIRTH = self.DATA_EMPLOYEE['month_birth']
         self.YEAR_BIRTH = self.DATA_EMPLOYEE['year_birth']
 
-    def data_employee(self):
+    def data_employee(self, name):
 
         self.wait_button_clickable(self.RESULT_DATA)
 
-        self.click_link_text(self.CODE_EMPLOYEE)
+        self.click_link_text(name)
 
         self.click_button(self.BUTTON_EDIT)
 
