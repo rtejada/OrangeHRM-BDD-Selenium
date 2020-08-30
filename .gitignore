@@ -1,5 +1,6 @@
 counduit/tests/.env
 suitecrm/tests/.env
+features/lib/data/.env.orangeHRM
 
 .idea/
 .idea

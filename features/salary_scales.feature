@@ -8,7 +8,7 @@ Feature: Administrar Escalas Salarias.
     Given Usuario con permismos registrado.
     And Accede a la opcion Escalas Salariales.
     When Añade escalas salarias a los puestos de Trabajo “<title_scale>”, "<currency>", "<minimum_salary>" , "<maximum_salary>"
-    Then confirma datos añadidos “<title_scale>”
+    Then confirma datos añadidos “<maximum_salary>”
 
     Examples:
     |title_scale|currency|minimum_salary|maximum_salary|

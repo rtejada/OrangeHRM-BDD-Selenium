@@ -45,10 +45,6 @@ def step_impl(context, title_scale, currency, minimum_salary, maximum_salary):
 
 @then("confirma datos añadidos “(?P<title_scale>.+)”")
 def step_impl(context, title_scale):
-    """
-    :type context: behave.runner.Context
-    :type title_scale: str
-    """
     pass
 
 

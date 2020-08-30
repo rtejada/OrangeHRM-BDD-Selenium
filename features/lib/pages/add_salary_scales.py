@@ -9,8 +9,9 @@ class AddSalaryScales(OrangeBasePage):
     ADMIN = (By.LINK_TEXT, 'Administrador')
     JOBS = 'menu_admin_Job'
     JOBS_TITLE_LISTS = (By.ID, 'menu_admin_Job')
-    SALARY_SCALE_TITLE = (By.ID, 'menu_admin_viewJobTitleList')
+    SALARY_SCALE_TITLE = (By.ID, 'menu_admin_viewPayGrades')
     BUTTON_ADD = (By.ID, 'btnAdd')
+    VISIBLE_TITLE = (By.ID, 'payGradeHeading')
     NAME_SCALE = (By.ID, 'payGrade_name')
     BUTTON_SAVE = (By.ID, 'btnSave')
     ADD_DATA = (By.ID, 'btnAddCurrency')
@@ -18,12 +19,11 @@ class AddSalaryScales(OrangeBasePage):
     MIN_SALARY = (By.ID, 'payGradeCurrency_minSalary')
     MAX_SALARY = (By.ID, 'payGradeCurrency_maxSalary')
     SAVE_CURRENCY = (By.ID, 'btnSaveCurrency')
-    path = os.getcwd() + "/features/lib/data/images/"
-    VISIBLE_TABLE_SCREEN = (By.XPATH, '//*[@id="resultTable"]/thead/tr/th[1]//input')
-    TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
-    NAME_SELECTOR = '//*[@id="resultTable"]/tbody/'
-    COL_SELECTOR = '/td[3]//a'
-    LIST_JOBS = []
+    ASSIGNED_CURRENCIES = (By.ID, 'assigned currencies')
+    VISIBLE_TABLE_SCREEN = (By.ID, 'currencyCheckAll')
+    TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="tblCurrencies"]/tbody/tr')
+    NAME_SELECTOR = '//*[@id="tblCurrencies"]/tbody/'
+    COL_SELECTOR = '/td[4]//a'
 
     def select_menu(self):
 
@@ -39,7 +39,7 @@ class AddSalaryScales(OrangeBasePage):
 
         self.click_button(self.BUTTON_ADD)
 
-        self.wait_selector_visible(self.NAME_SCALE)
+        self.wait_selector_visible(self.VISIBLE_TITLE)
 
         self.wait_button_clickable(self.NAME_SCALE)
 
@@ -67,14 +67,7 @@ class AddSalaryScales(OrangeBasePage):
 
     def search_jobs(self, search_item):
 
-        search = SearchInJobOptions(self.driver)
-        self.visible_selector = ''
-        self.table_rows_selector = ''
-        self.file_selector = ''
-        self.col_selector = ''
-
-        value = search.added_job_option(search_item)
-        return value
+        pass
 
 
 
