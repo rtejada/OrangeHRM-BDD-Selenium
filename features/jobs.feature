@@ -9,9 +9,10 @@ Feature: Administrar Puestos de Trabajo.
     And Accede a la opcion Puestos de Trabajo.
     When Añade varios puestos de Trabajo “<title>”, "<job_description>", "<note>" , "<img>"
     Then Confirma titulos de los puestos añadidos “<title>”
+    And Elimina registro creado “<title>”
 
     Examples:
     |title|job_description|note|img|
-    |GERENTE|Establece las prioridades laborales y gestiona los gastos de la empresa|Dpto FINANAZAS|apu.jpg|
-    |SUPERVISOR|Observa y dirige al personal para orientarlo y vigilarlo en el cumplimiento de sus funciones|Dpto PRODUCCION|tio.jpg|
-    |ADMINISTRADOR|Obtiene resultados a traves de otras personas.Es el responsable de llevar a cabo las actividades necesarias para alcanzar las metas organizacionales|Dpto VENTAS|moe.jpg|
+    |GERENTE-PRUEBAS|Establece las prioridades laborales y gestiona los gastos de la empresa|Dpto FINANAZAS|apu.jpg|
+    |SUPERVISOR-PRUEBAS|Observa y dirige al personal para orientarlo y vigilarlo en el cumplimiento de sus funciones|Dpto PRODUCCION|tio.jpg|
+    |ADMINISTRADOR-PRUEBAS|Obtiene resultados a traves de otras personas.Es el responsable de llevar a cabo las actividades necesarias para alcanzar las metas organizacionales|Dpto VENTAS|moe.jpg|

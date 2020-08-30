@@ -48,3 +48,12 @@ def confirm_titles_added_posts(context, title):
     context.title = title
     found = context.new_job.search_jobs(context.title)
     assert found
+
+
+@step("Elimina registro creado “(?P<title>.+)”")
+def step_impl(context, title):
+
+    context.title = title
+    context.new_job.delete_job(context.title)
+
+
