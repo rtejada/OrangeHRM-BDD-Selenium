@@ -41,10 +41,13 @@ def access_salary_scale_option(context):
 def step_impl(context, title_scale, currency, minimum_salary, maximum_salary):
 
     context.dict = {"title_scale": title_scale, "currency": currency, "minimum_salary": minimum_salary, "maximum_salary": maximum_salary}
-    context.new_scale.add_salary_sacale(context.dict)
+    max_salary = context.new_scale.add_salary_sacale(context.dict)
+    context.max_salary = max_salary
 
 @then("confirma datos añadidos “(?P<title_scale>.+)”")
 def step_impl(context, title_scale):
-    pass
+
+    found = context.new_scale.search_max_salary(context.max_salary)
+    assert found
 
 

@@ -19,11 +19,13 @@ class AddSalaryScales(OrangeBasePage):
     MIN_SALARY = (By.ID, 'payGradeCurrency_minSalary')
     MAX_SALARY = (By.ID, 'payGradeCurrency_maxSalary')
     SAVE_CURRENCY = (By.ID, 'btnSaveCurrency')
-    ASSIGNED_CURRENCIES = (By.ID, 'assigned currencies')
+
+    ASSIGNED_CURRENCIES = (By.ID, 'currencyListHeading')
     VISIBLE_TABLE_SCREEN = (By.ID, 'currencyCheckAll')
+    VALUE_MAX_SALARY = (By.XPATH, '//*[@id="tblCurrencies"]/tbody/tr/td[4]')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="tblCurrencies"]/tbody/tr')
     NAME_SELECTOR = '//*[@id="tblCurrencies"]/tbody/'
-    COL_SELECTOR = '/td[4]//a'
+    COL_SELECTOR = '/td[4]'
 
     def select_menu(self):
 
@@ -65,9 +67,22 @@ class AddSalaryScales(OrangeBasePage):
 
         self.send_enter_key(self.SAVE_CURRENCY)
 
-    def search_jobs(self, search_item):
+        self.wait_selector_visible(self.ASSIGNED_CURRENCIES)
 
-        pass
+        self.wait_button_clickable(self.VISIBLE_TABLE_SCREEN)
+
+        max_salary = self.driver.find_element(*self.VALUE_MAX_SALARY).text
+        return max_salary
+
+    def search_max_salary(self, search_item):
+
+        search = SearchInJobOptions(self.driver)
+        search.visible_selector = self.VISIBLE_TABLE_SCREEN
+        search.table_rows_selector = self.TABLE_ROWS_SELECTOR
+        search.file_selector = self.NAME_SELECTOR
+        search.col_selector = self.COL_SELECTOR
+        value = search.added_job_option(search_item)
+        return value
 
 
 

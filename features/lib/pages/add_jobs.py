@@ -22,7 +22,7 @@ class AddNewJobs(OrangeBasePage):
     VISIBLE_TABLE_SCREEN = (By.XPATH, '//*[@id="resultTable"]/thead/tr/th[1]//input')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
     NAME_SELECTOR = '//*[@id="resultTable"]/tbody/'
-    COL_SELECTOR = '/td[3]//a'
+    COL_SELECTOR = '/td[2]//a'
     LIST_JOBS = []
 
     def select_menu(self):
