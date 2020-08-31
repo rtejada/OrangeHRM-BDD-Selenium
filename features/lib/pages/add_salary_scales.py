@@ -1,5 +1,6 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.pages_search.search_according_job_options import SearchInJobOptions
+from lib.pages.delete_register import DeleteRegister
 from selenium.webdriver.common.by import By
 
 
@@ -82,6 +83,23 @@ class AddSalaryScales(OrangeBasePage):
         search.col_selector = self.COL_SELECTOR
         value = search.added_job_option(search_item)
         return value
+
+    def del_title_salary_scale(self, title):
+
+        self.click_button(self.ADMIN)
+
+        self.wait_selector_visible(self.JOBS_TITLE_LISTS)
+
+        self.menu_select_option(self.JOBS_TITLE_LISTS, self.SALARY_SCALE_TITLE)
+
+        self.wait_button_clickable(self.BUTTON_ADD)
+
+        selector = DeleteRegister(self.driver)
+        value = selector.registration(title)
+        return value
+
+
+
 
 
 

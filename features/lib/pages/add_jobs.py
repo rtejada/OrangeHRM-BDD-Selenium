@@ -1,6 +1,6 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.pages_search.search_according_job_options import SearchInJobOptions
-from lib.pages.delete_jobs import DeleteJob
+from lib.pages.delete_register import DeleteRegister
 from selenium.webdriver.common.by import By
 import os
 
@@ -63,8 +63,8 @@ class AddNewJobs(OrangeBasePage):
 
     def delete_job(self, title_job):
 
-        selector = DeleteJob(self.driver)
-        value = selector.job(title_job)
+        selector = DeleteRegister(self.driver)
+        value = selector.registration(title_job)
 
         return value
 

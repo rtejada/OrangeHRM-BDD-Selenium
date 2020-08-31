@@ -44,10 +44,18 @@ def step_impl(context, title_scale, currency, minimum_salary, maximum_salary):
     max_salary = context.new_scale.add_salary_sacale(context.dict)
     context.max_salary = max_salary
 
-@then("confirma datos añadidos “(?P<title_scale>.+)”")
-def step_impl(context, title_scale):
+
+@then("confirma datos añadidos")
+def step_impl(context):
 
     found = context.new_scale.search_max_salary(context.max_salary)
     assert found
 
 
+@step('Elimina registro “(?P<title_scale>.+)”')
+def step_impl(context, title_scale):
+
+    context.title = title_scale
+
+    not_found = context.new_scale.del_title_salary_scale(context.title)
+    assert not_found
