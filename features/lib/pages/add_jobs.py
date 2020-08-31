@@ -64,5 +64,9 @@ class AddNewJobs(OrangeBasePage):
     def delete_job(self, title_job):
 
         selector = DeleteJob(self.driver)
-        selector.job(title_job)
+        value = selector.job(title_job)
+
+        return value
+
+
 

@@ -54,6 +54,8 @@ def confirm_titles_added_posts(context, title):
 def step_impl(context, title):
 
     context.title = title
-    context.new_job.delete_job(context.title)
+    not_found = context.new_job.delete_job(context.title)
+
+    assert not_found
 
 
