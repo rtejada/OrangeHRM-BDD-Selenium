@@ -9,7 +9,7 @@ class OrangeSiteSearchList(OrangeBasePage):
     table_rows_selector = ''
     name_selector = ''
     col_selector = ''
-    list_names = []
+    list_searchs = []
 
     def search_element(self, search_item):
 
@@ -30,9 +30,9 @@ class OrangeSiteSearchList(OrangeBasePage):
         for a in range(1, rows_count + 1):
             value = self.driver.find_element_by_xpath(self.name_selector + 'tr[' + str(a) + ']' + self.col_selector)
 
-            self.list_names.append(value.text)
+            self.list_searchs.append(value.text)
 
-        if search_item in self.list_names:
+        if search_item in self.list_searchs:
             return True
         else:
             return False
