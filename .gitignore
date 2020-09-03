@@ -4,3 +4,5 @@ features/lib/data/.env.orangeHRM
 
 .idea/
 .idea
+
+venv/
