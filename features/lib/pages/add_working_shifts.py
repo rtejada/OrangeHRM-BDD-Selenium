@@ -18,21 +18,14 @@ class AddWorkingShift(OrangeBasePage):
     ADD = (By.ID, 'btnAssignEmployee')
     BUTTON_SAVE = (By.ID, 'btnSave')
 
-    FORM_LIST = (By.ID, 'frmList_ohrmListComponent')
     VISIBLE_TABLE = (By.ID, 'ohrmList_chkSelectAll')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
-    NAME_SELECTOR = '//*[@id="resultTable"]/tbody/'
-    COL_SELECTOR = '/td[2]/a'
-
-    BUTTON_DELETE = (By.ID, 'btnDelete')
-    SCREEN_DELETE = (By.ID, 'deleteConfModal')
-    BUTTON_OK = (By.ID, 'dialogDeleteBtn')
-    TITLE_JOB = (By.XPATH, '//*[@id="resultTable"]/tbody/tr/td/a')
-
-    ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
     NAME_SEL = '//*[@id="resultTable"]/tbody/'
     COL_SEL = '/td[2]/a'
     BUTTON_CHECK = '/td[1]'
+    BUTTON_DELETE = (By.ID, 'btnDelete')
+    SCREEN_DELETE = (By.ID, 'deleteConfModal')
+    BUTTON_OK = (By.ID, 'dialogDeleteBtn')
 
     def select_menu(self):
 
@@ -78,7 +71,7 @@ class AddWorkingShift(OrangeBasePage):
 
         selector = DeleteRegister(self.driver)
         selector.visible_table = self.VISIBLE_TABLE
-        selector.rows_selector = self.ROWS_SELECTOR
+        selector.rows_selector = self.TABLE_ROWS_SELECTOR
         selector.name_selector = self.NAME_SEL
         selector.col_selector = self.COL_SEL
         selector.button_check = self.BUTTON_CHECK

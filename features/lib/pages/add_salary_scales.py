@@ -1,5 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
-from lib.pages.pages_search.search_according_job_options import SearchInJobOptions
+from lib.pages.pages_search.search_result_table import SearchElement
 from lib.pages.delete_register import DeleteRegister
 from selenium.webdriver.common.by import By
 
@@ -86,12 +86,12 @@ class AddSalaryScales(OrangeBasePage):
 
     def search_max_salary(self, search_item):
 
-        search = SearchInJobOptions(self.driver)
+        search = SearchElement(self.driver)
         search.visible_selector = self.VISIBLE_TABLE_SCREEN
         search.table_rows_selector = self.TABLE_ROWS_SELECTOR
         search.file_selector = self.NAME_SELECTOR
         search.col_selector = self.COL_SELECTOR
-        value = search.added_job_option(search_item)
+        value = search.get_value(search_item)
         return value
 
     def del_title_salary_scale(self, title):

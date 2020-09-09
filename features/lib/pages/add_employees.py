@@ -1,7 +1,6 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.pages_search.search_in_list import OrangeSiteSearchList
 from selenium.webdriver.common.by import By
-from random_word import RandomWords
 from random import randint
 import uuid
 
