@@ -1,5 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
-from lib.pages.pages_search.search_by_id import OrangeSiteSearchId
+from lib.pages.staff_details import PersonalData
 from lib.pages.data_employee import DataEmployeeEdit
 from lib.pages.pages_search.add_file import AddFile
 from selenium.webdriver.common.by import By
@@ -13,7 +13,7 @@ class EditDataEmployees(OrangeBasePage):
     EMPLOYEE = 'menu_pim_viewEmployeeList'
     BUTTON_LIST_EMPLOYEES = (By.ID, EMPLOYEE)
 
-    NAME_EMPLOYEE = (By.ID, 'empsearch_employee_name_empName')
+    ID_EMPLOYEE = (By.ID, 'empsearch_id')
     SEARCH_EMPLOYEE = (By.ID, 'searchBtn')
 
     PERSONAL_DETAILS = (By.ID, 'pdMainContainer')
@@ -38,35 +38,26 @@ class EditDataEmployees(OrangeBasePage):
 
         self.click_by_javascript(self.EMPLOYEE)
 
-    def search_data_employee(self, name):
+    def search_data_employee(self, id_employee):
 
-        self.fill_text_field(self.NAME_EMPLOYEE, name)
+        self.fill_text_field(self.ID_EMPLOYEE, id_employee)
 
         self.click_button(self.SEARCH_EMPLOYEE)
 
-    def item_employee(self, name):
+    def item_employee(self, id_employee):
 
         edit = DataEmployeeEdit(self.driver)
-        edit.data_employee(name)
-        new_id = edit.get_id()
-        return new_id
+        edit.data_employee(id_employee)
 
     def add_image(self):
 
         upload_file = AddFile(self.driver)
         upload_file.add_img()
 
-    def search_new_id_employee(self, id_employee):
+    def add_contact_details(self):
 
-        search_id = OrangeSiteSearchId(self.driver)
-        search_id.personal_detail = self.PERSONAL_DETAILS
-        search_id.menu_selector = self.LIST_EMPLOYEES
-        search_id.employee = self.IDENTIFICATION
-        search_id.identification = id_employee
-        search_id.table_row_selector = self.TABLE_ROWS_SELECTOR
-
-        value = search_id.employee_id()
-        return value
+        add = PersonalData(self.driver)
+        add.data_of_contact()
 
 
 

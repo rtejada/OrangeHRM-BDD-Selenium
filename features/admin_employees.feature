@@ -11,18 +11,5 @@ Feature: Módulo de Información Personal.
 
     Examples:
     |cod|p_nombre|s_nombre|apellidos|usu|pwd|
-    |D|A|B|C|Usu|$%Orange%|
-
-
-  Scenario Outline: Listar y Editar Datos Empleado
-    Given El usuario tiene permisos de administración.
-    When Busca el nuevo empleado “<nombre>”
-    And Edita los datos personales
-    And Añade archivos adjuntos
-    Then Confirma que los datos quedaron registrado
-
-    Examples:
-    |nombre|
-    |AHawking Bwater-blue|
-    |Acounselled Bsexualized|
-    |Ainconvenienced Brestriping|
+    |ID|Pablo|B|C|Usu|$%Orange%|
+    |ID|Marco|B|C|Usu|$%Orange%|

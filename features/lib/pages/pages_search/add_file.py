@@ -8,6 +8,7 @@ class AddFile(OrangeBasePage):
 
     SCREEN_SELECT_FILE = (By.ID, 'addPaneAttachments')
     BUTTON_SELECT_FILE = (By.ID, 'ufile')
+    COMMENTARY = (By.ID, 'txtAttDesc')
     SEARCH_BUTTON = (By.ID, 'search_form_submit')
     VISIBLE_SCREEN_LOAD = (By.ID, "frmEmpAttachment")
     BUTTON_ADD = (By.ID, 'btnAddAttachment')
@@ -34,6 +35,8 @@ class AddFile(OrangeBasePage):
         self.wait_button_clickable(self.BUTTON_SELECT_FILE)
 
         self.driver.find_element(*self.BUTTON_SELECT_FILE).send_keys(self.path + self.file_name)
+
+        self.fill_text_field(self.COMMENTARY, self.random_letter(80))
 
         self.wait_selector_visible(self.VISIBLE_SCREEN_LOAD)
 
