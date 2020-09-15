@@ -4,7 +4,7 @@ import os
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from lib.pages.init_session import StartSessionPage
-from lib.pages.edit_data_employee import EditDataEmployees
+from lib.pages.edit_personal_data import EditDataEmployees
 
 use_step_matcher("re")
 
@@ -38,90 +38,32 @@ def search_data_registered_employee(context, id_employee):
     context.edit = edit
 
 
-@step("Edita sus datos personales")
-def edit_personal_data(context):
+@step('Edita sus datos personales y añade archivo adjunto "(?P<img>.+)"')
+def edit_personal_data(context, img):
+    context.img = img
+    context.edit.personal_data(context.id)
+    context.edit.add_image(context.img)
 
-    context.edit.item_employee(context.id)
 
-
-@step("Añade archivos adjuntos")
-def adding_attachments(context):
-
-    context.edit.add_image()
-
-@step("Añade Datos de Contacto\.")
-def step_impl(context):
-
+@step('Añade Datos de Contacto y archivo adjunto "(?P<img>.+)"')
+def add_contact_details_and_file_attachment(context, img):
+    context.img = img
     context.edit.add_contact_details()
+    context.edit.add_image(context.img)
 
-@step("Añade Datos de Contactos de Emergencia\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
-
-
-@step("Añade sus Cargas Familiares\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+@step(
+    'Añade Puesto de Trabajo y archivo adjunto "(?P<titulo_puesto>.+)","(?P<categoria>.+)","(?P<ubicacion>.+)","(?P<img>.+)"')
+def add_job_and_attachment(context, titulo_puesto, categoria, ubicacion, img):
+    context.file = img
+    context.work_data = {"title": titulo_puesto, "category": categoria, "location": ubicacion}
+    context.edit.add_job(context.work_data)
 
 
-@step("Registra datos de Inmigración\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
 
+@then("Confirma que los datos quedaron registrado “(?P<id_employee>.+)”, “(?P<titulo_puesto>.+)”")
+def confirm_register_data(context, id_employee, titulo_puesto):
 
-@step("Añade Puestos de Trabajo\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+    context.data_search = {"id": id_employee, "title": titulo_puesto}
+    found = context.edit.search_register(context.data_search)
 
-
-@step("Añade el Salario/Sueldo\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
-
-
-@step("Reporta datos a")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
-
-
-@step("Registra Curriculum")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
-
-
-@step("Registra Menbresías")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
-
-
-@then("Confirma que los datos quedaron registrado")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
-
+    assert found

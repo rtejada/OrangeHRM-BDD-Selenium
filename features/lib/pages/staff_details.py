@@ -5,7 +5,7 @@ import json
 from random import randint
 
 
-class PersonalData(OrangeBasePage):
+class ContactData(OrangeBasePage):
 
     CONTACT_INFO = (By.LINK_TEXT, 'Datos de contacto')
     BUTTON_EDIT = (By.ID, 'btnSave')
@@ -21,7 +21,6 @@ class PersonalData(OrangeBasePage):
     CONTACT_WORK_EMAIL = (By.ID, 'contact_emp_work_email')
     CONTACT_OTHER_EMAIL = (By.ID, 'contact_emp_oth_email')
     BUTTON_SAVE = (By.ID, 'btnSave')
-
 
     def __init__(self, driver):
         super().__init__(driver)

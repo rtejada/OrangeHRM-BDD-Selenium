@@ -6,22 +6,21 @@ Feature: Editar Datos Empleado
    Given Usuario con permisos registrado.
    And Incia sesion en OrangeHRM.
    When Busca empleado “<id_employee>”
-   And Edita sus datos personales
-   And Añade archivos adjuntos
-   And Añade Datos de Contacto.
-   And Añade Datos de Contactos de Emergencia.
-   And Añade sus Cargas Familiares.
-   And Registra datos de Inmigración.
-   And Añade Puestos de Trabajo.
-   And Añade el Salario/Sueldo.
-   And Reporta datos a
-   And Registra Curriculum
-   And Registra Menbresías
-   Then Confirma que los datos quedaron registrado
+   And Edita sus datos personales y añade archivo adjunto "<img>"
+   And Añade Datos de Contacto y archivo adjunto "<img>"
+   And Añade Puesto de Trabajo y archivo adjunto "<titulo_puesto>","<categoria>","<ubicacion>","<img>"
+   Then Confirma que los datos quedaron registrado “<id_employee>”, “<titulo_puesto>”
 
     Examples:
-    |id_employee|
-    |ID17323630|
-    |ID10693967|
-    |ID10593465|
-    |ID19337062|
+    |id_employee|titulo_puesto|ubicacion|categoria|img|
+    |ID17323630|ADMINISTRADOR|A4aDNuQgIV S.A.|Officials and Managers|image1.jpg|
+    |ID10693967|AUXILIAR|XQQxZOtB3N S.Coop.|Professionals|image2.jpg|
+    |ID10593465|GERENTE|PPQDGYX6MJ S.A.|Service Workers|neo.jpg|
+    |ID19337062|SUPERVISOR|TUf5PHPo1k S.L.|Technicians|image1.jpg|
+
+
+
+
+
+
+

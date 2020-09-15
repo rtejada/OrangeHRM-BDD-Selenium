@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.add_employees import AdminEmployees
-from lib.pages.edit_data_employee import EditDataEmployees
+from lib.pages.edit_personal_data import EditDataEmployees
 
 use_step_matcher("re")
 

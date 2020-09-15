@@ -61,4 +61,26 @@ def confirm_data_register(context):
         search_id.table_row_selector = self.TABLE_ROWS_SELECTOR
         value = search_id.employee_id()
         return value
+
+
+ And Añade Datos de Contacto.
+   And Añade Datos de Contactos de Emergencia.
+   And Añade sus Cargas Familiares.
+   And Registra datos de Inmigración.
+   
+
+self.wait_selector_visible(self.PROFILE_PIC)
+        self.click_button(self.PROFILE_PIC)
+        self.wait_selector_visible(self.PHOTO_FILE)
+        self.wait_button_clickable(self.PHOTO_FILE)
+        self.driver.find_element(*self.PHOTO_FILE).send_keys(self.PATH + work_data["img"])
+        self.wait_button_clickable(self.LOAD)
+        self.send_enter_key(self.LOAD)
+        self.wait_selector_visible(self.LOAD)
+        self.wait_button_clickable(self.LOAD)
+
+PROFILE_PIC = (By.ID, 'profile-pic')
+PHOTO_FILE = (By.ID, 'photofile')
+LOAD = (By.ID, 'btnSave')
+PATH = os.getcwd() + "/features/lib/data/images/"
 '''

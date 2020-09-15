@@ -15,7 +15,7 @@ class AddFile(OrangeBasePage):
     BUTTON_LOAD = (By.ID, 'btnSaveAttachment')
     VISIBLE_SCREEN = (By.XPATH, '//*[@id="attachmentList"]/div/h1')
 
-    file_name = 'image1.jpeg'
+    file_name = ''
     path = os.getcwd() + "/features/lib/data/images/"
     select_file = ''
 
@@ -25,7 +25,8 @@ class AddFile(OrangeBasePage):
         self.driver.execute_script("arguments[0].style.display = 'block';", file_add)
         file_add.send_keys(self.path + self.file_name)
 
-    def add_img(self):
+    def add_img(self, img):
+
         self.wait_selector_visible(self.VISIBLE_SCREEN)
 
         self.click_button(self.BUTTON_ADD)
@@ -34,7 +35,7 @@ class AddFile(OrangeBasePage):
 
         self.wait_button_clickable(self.BUTTON_SELECT_FILE)
 
-        self.driver.find_element(*self.BUTTON_SELECT_FILE).send_keys(self.path + self.file_name)
+        self.driver.find_element(*self.BUTTON_SELECT_FILE).send_keys(self.path + img)
 
         self.fill_text_field(self.COMMENTARY, self.random_letter(80))
 
