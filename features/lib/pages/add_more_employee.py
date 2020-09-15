@@ -25,7 +25,7 @@ class AddMoreEmployee(OrangeBasePage):
         rows_count = len(self.driver.find_elements(*self.TABLE_ROWS_SELECTOR))
 
         for a in range(1, rows_count + 1):
-            value = self.driver.find_element_by_xpath(self.NAME_SELECTOR + 'tr[' + str(a) + ']' + self.COL_SELECTOR)
+            value = self.driver.find_element(By.XPATH, (self.NAME_SELECTOR + 'tr[' + str(a) + ']' + self.COL_SELECTOR))
 
             self.LIST_NAME_SHIFT.append(value.text)
 
@@ -49,7 +49,7 @@ class AddMoreEmployee(OrangeBasePage):
         rows_count = len(self.driver.find_elements(*self.TABLE_ROWS_SELECTOR))
 
         for a in range(1, rows_count + 1):
-            value = self.driver.find_element_by_xpath(self.NAME_SELECTOR + 'tr[' + str(a) + ']' + self.COL_SELECTOR)
+            value = self.driver.find_element(By.XPATH, (self.NAME_SELECTOR + 'tr[' + str(a) + ']' + self.COL_SELECTOR))
 
             self.LIST_CONFIRM.append(value.text)
 

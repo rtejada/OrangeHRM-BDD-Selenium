@@ -11,5 +11,5 @@ Feature: Módulo de Información Personal.
 
     Examples:
     |cod|p_nombre|s_nombre|apellidos|usu|pwd|
-    |ID|Pablo|B|C|Usu|$%Orange%|
-    |ID|Marco|B|C|Usu|$%Orange%|
+    |ID|Pepe|B|C|Usu|$%Orange%|
+

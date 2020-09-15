@@ -56,6 +56,5 @@ def step_impl(context):
 def step_impl(context, title_scale):
 
     context.title = title_scale
-
     not_found = context.new_scale.del_title_salary_scale(context.title)
     assert not_found

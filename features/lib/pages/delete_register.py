@@ -1,4 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
+from selenium.webdriver.common.by import By
 
 
 class DeleteRegister(OrangeBasePage):
@@ -21,10 +22,10 @@ class DeleteRegister(OrangeBasePage):
         rows_col = len(self.driver.find_elements(*self.rows_selector))
 
         for a in range(1, rows_col + 1):
-            button = self.driver.find_element_by_xpath(self.name_selector + 'tr[' + str(a) + ']' + self.button_check)
-            value = self.driver.find_element_by_xpath(self.name_selector + 'tr[' + str(a) + ']' + self.col_selector).text
+            button = self.driver.find_element(By.XPATH, (self.name_selector + 'tr[' + str(a) + ']' + self.button_check))
+            value = self.driver.find_element(By.XPATH, (self.name_selector + 'tr[' + str(a) + ']' + self.col_selector))
 
-            if value == selector:
+            if value.text == selector:
                 button.click()
                 break
 
@@ -46,7 +47,7 @@ class DeleteRegister(OrangeBasePage):
         rows_count = len(self.driver.find_elements(*self.rows_selector))
 
         for a in range(1, rows_count + 1):
-            value = self.driver.find_element_by_xpath(self.name_selector + 'tr[' + str(a) + ']' + self.col_selector)
+            value = self.driver.find_element(By.XPATH, (self.name_selector + 'tr[' + str(a) + ']' + self.col_selector))
 
             self.LIST_REGISTERS.append(value.text)
 
