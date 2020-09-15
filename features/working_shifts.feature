@@ -14,7 +14,7 @@ Feature: Administrar Turnos de Trabajo
 
     Examples:
     |nom_turno|desde|hasta|empleado|empleados|
-    |Completa-Diurno|09:00 |18:00|Acounselled Bsexualized Cpassionateness|Ainconvenienced Brestriping Cpicramate|
-    |Completa-Tarde|15:45 |23:45|Atimewarps Bprepossession Crasing|Ajagger BBronx CPontypool|
-    |Parcial|12:00 |16:00|Awhatevers Binfirmative Cspirea|Aconceipt Bbedrobe CSchutzstaffel|
+    |Diurno|09:00 |18:00|Pepe-6508 B8bMAHjpg CNBIgaaHn|Diego-14060 BKYQKXR9T CRO7NZkA6|
+    |Tarde|15:45 |23:45|Pepe-6508 B8bMAHjpg CNBIgaaHn|Diego-14060 BKYQKXR9T CRO7NZkA6|
+    |Parcial-Tarde|15:00 |20:00|Pepe-6508 B8bMAHjpg CNBIgaaHn|Diego-14060 BKYQKXR9T CRO7NZkA6|
 
