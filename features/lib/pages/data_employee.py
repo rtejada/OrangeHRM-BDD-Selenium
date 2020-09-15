@@ -33,7 +33,6 @@ class DataEmployeeEdit(OrangeBasePage):
         with open(os.getcwd() + "/features/lib/data/data_users.json") as file:
             self.DATA_EMPLOYEE = json.load(file)
 
-        self.ID = self.DATA_EMPLOYEE['new_id_employee'] + str(randint(1, 90000000))
         self.ADDITIONAL_ID = self.DATA_EMPLOYEE['other_id'] + str(randint(1, 90000000))
         self.CARD_NUMBER = self.DATA_EMPLOYEE['card_number'] + str(uuid.getnode())
         self.CODE_EMPLOYEE = self.DATA_EMPLOYEE['id_employee']
@@ -44,15 +43,13 @@ class DataEmployeeEdit(OrangeBasePage):
         self.MONTH_BIRTH = self.DATA_EMPLOYEE['month_birth']
         self.YEAR_BIRTH = self.DATA_EMPLOYEE['year_birth']
 
-    def data_employee(self, name):
+    def data_employee(self, id_employee):
 
         self.wait_button_clickable(self.RESULT_DATA)
 
-        self.click_link_text(name)
+        self.click_link_text(id_employee)
 
         self.click_button(self.BUTTON_EDIT)
-
-        self.fill_text_field(self.NEW_ID, self.ID)
 
         self.fill_text_field(self.OTHER_ID, self.ADDITIONAL_ID)
 
@@ -86,6 +83,3 @@ class DataEmployeeEdit(OrangeBasePage):
 
         self.send_enter_key(self.BUTTON_SAVE)
 
-    def get_id(self):
-
-        return self.ID

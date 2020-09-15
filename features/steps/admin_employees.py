@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.add_employees import AdminEmployees
-from lib.pages.edit_data_employee import EditDataEmployees
+from lib.pages.edit_personal_data import EditDataEmployees
 
 use_step_matcher("re")
 
@@ -49,6 +49,7 @@ def add_new_employee(context, cod, p_nombre, s_nombre, apellidos, usu, pwd):
     name, code = employee.get_employee()
     context.employee = employee
     context.name = name
+    context.code = code
 
 
 @then("confirma datos del nuevo empleado")
@@ -57,36 +58,3 @@ def search_and_confirm_employee_data(context):
     found = context.employee.search_name_employee(context.name)
 
     assert found
-
-
-@when('Busca el nuevo empleado “(?P<nombre>.+)”')
-def search_data_registered_employee(context, nombre):
-    context.name = nombre
-    edit = EditDataEmployees(context.driver)
-    edit.select_menu()
-    edit.search_data_employee(context.name)
-
-    context.edit = edit
-
-
-@step("Edita los datos personales")
-def edit_personal_data(context):
-
-    new_id = context.edit.item_employee(context.name)
-    context.new_id = new_id
-
-
-@step("Añade archivos adjuntos")
-def adding_attachments(context):
-
-    context.edit.add_image()
-
-
-@then("Confirma que los datos quedaron registrado")
-def confirm_data_register(context):
-
-    found = context.edit.search_new_id_employee(context.new_id)
-
-    assert found
-
-

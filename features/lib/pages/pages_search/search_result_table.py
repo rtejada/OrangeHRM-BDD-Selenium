@@ -1,4 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
+from selenium.webdriver.common.by import By
 
 
 class SearchElement(OrangeBasePage):
@@ -17,7 +18,8 @@ class SearchElement(OrangeBasePage):
         rows_count = len(self.driver.find_elements(*self.table_rows_selector))
 
         for a in range(1, rows_count + 1):
-            value = self.driver.find_element_by_xpath(self.file_selector + 'tr[' + str(a) + ']' + self.col_selector)
+
+            value = self.driver.find_element(By.XPATH, (self.file_selector + 'tr[' + str(a) + ']' + self.col_selector))
 
             self.LIST_VALUES .append(value.text)
 

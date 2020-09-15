@@ -1,5 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
-from lib.pages.add_info import OrganizationData
+from lib.pages.add_info_organization import OrganizationData
 from selenium.webdriver.common.by import By
 
 
