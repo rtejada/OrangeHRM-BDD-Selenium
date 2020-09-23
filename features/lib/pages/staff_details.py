@@ -50,6 +50,8 @@ class ContactData(OrangeBasePage):
 
         self.click_button(self.BUTTON_EDIT)
 
+        self.wait_selector_visible(self.CONTACT_STREET1)
+
         self.fill_text_field(self.CONTACT_STREET1, self.address_1)
 
         self.fill_text_field(self.CONTACT_STREET2, self.address_2)

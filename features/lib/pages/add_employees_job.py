@@ -44,3 +44,4 @@ class EmployeeWorkplaceData(OrangeBasePage):
         self.wait_selector_visible(self.CALENDAR)
         self.wait_button_clickable(self.DATE_ENTRY)
         self.click_button(self.BUTTON_SAVE)
+

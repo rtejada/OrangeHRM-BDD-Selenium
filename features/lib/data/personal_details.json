@@ -11,5 +11,8 @@
   "email": "@orange.es",
   "other_email": "@hrm.es",
   "note": "",
-  "status": "Activo"
+  "status": "Activo",
+  "year_from": 1999,
+  "year_to": 2018,
+  "comment": ""
   }
