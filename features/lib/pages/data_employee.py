@@ -21,11 +21,13 @@ class DataEmployeeEdit(OrangeBasePage):
     BUTTON_YEAR = (By.XPATH, '//*[@id="ui-datepicker-div"]//div/select[@class="ui-datepicker-year"]')
     DAY_EXPIRATION_CARD = (By.XPATH, '//*[@id="ui-datepicker-div"]/table/tbody/tr[5]/td[3]/a')
     DAY_BIRTH = (By.XPATH, '//*[@id="ui-datepicker-div"]/table/tbody/tr[3]/td[5]/a')
+    DNI = (By.ID, 'personal_txtSINNo')
     GENDER = (By.ID, 'personal_optGender_2')
     MARITAL_STATUS = (By.ID, 'personal_cmbMarital')
     LIST_NATIONALITIES = (By.ID, 'personal_cmbNation')
     DATE_OF_BIRTH = (By.ID, 'personal_DOB')
     BUTTON_SAVE = (By.ID, 'btnSave')
+    SAVE = 'btnSave'
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -42,6 +44,7 @@ class DataEmployeeEdit(OrangeBasePage):
         self.NATIONALITY = self.DATA_EMPLOYEE['nationality']
         self.MONTH_BIRTH = self.DATA_EMPLOYEE['month_birth']
         self.YEAR_BIRTH = self.DATA_EMPLOYEE['year_birth']
+        self.CARD_IDENTITY = self.DATA_EMPLOYEE['card_number'] + str(randint(1, 9000000)) + 'D'
 
     def data_employee(self, id_employee):
 
@@ -65,6 +68,8 @@ class DataEmployeeEdit(OrangeBasePage):
 
         self.click_button(self.DAY_EXPIRATION_CARD)
 
+        self.fill_text_field(self.DNI, self.CARD_IDENTITY)
+
         self.click_button(self.GENDER)
 
         self.fill_select_field(self.MARITAL_STATUS, self.CIVIL_STATUS)
@@ -81,5 +86,7 @@ class DataEmployeeEdit(OrangeBasePage):
 
         self.click_button(self.DAY_BIRTH)
 
-        self.send_enter_key(self.BUTTON_SAVE)
+        #self.send_enter_key(self.BUTTON_SAVE)
+
+        self.click_by_javascript(self.SAVE)
 

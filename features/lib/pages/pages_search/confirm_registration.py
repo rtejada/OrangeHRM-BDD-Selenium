@@ -11,6 +11,8 @@ class ConfirmRegisters(OrangeBasePage):
     table_rows_selector = ''
     file_selector = ''
     col_selector = ''
+    section_work = ''
+    data_form = ''
     list_data = []
 
     def register(self, search):
@@ -43,4 +45,17 @@ class ConfirmRegisters(OrangeBasePage):
             self.list_data.append(value.text)
 
         return title in self.list_data
+
+    def find_employee_records(self, element):
+
+        self.wait_selector_visible(self.section_work)
+        self.wait_button_clickable(self.data_form)
+        rows_count = len(self.driver.find_elements(*self.table_rows_selector))
+
+        for a in range(1, rows_count + 1):
+            value = self.driver.find_element(By.XPATH, (self.file_selector + 'tr[' + str(a) + ']' + self.col_selector))
+
+            self.list_data.append(value.text)
+
+        return element in self.list_data
 
