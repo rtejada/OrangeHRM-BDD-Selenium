@@ -49,7 +49,7 @@ def edit_personal_data(context, img):
 def add_contact_details_and_file_attachment(context, img):
     context.img = img
     context.edit.add_contact_details()
-    context.edit.add_image(context.img)
+
 
 @step(
     'Añade Puesto de Trabajo y archivo adjunto "(?P<titulo_puesto>.+)","(?P<categoria>.+)","(?P<ubicacion>.+)","(?P<img>.+)"')
@@ -57,7 +57,6 @@ def add_job_and_attachment(context, titulo_puesto, categoria, ubicacion, img):
     context.file = img
     context.work_data = {"title": titulo_puesto, "category": categoria, "location": ubicacion}
     context.edit.add_job(context.work_data)
-
 
 
 @then("Confirma que los datos quedaron registrado “(?P<id_employee>.+)”, “(?P<titulo_puesto>.+)”")

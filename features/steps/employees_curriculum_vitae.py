@@ -51,16 +51,15 @@ def step_impl(context, fotografia):
     context.data.add_photo(context.photo)
 
 
-
 @step("Añade su experiencia laboral, su formacion y sus habiliadades “(?P<puesto>.+)”, “(?P<empresa>.+)”")
 def step_impl(context, puesto, empresa):
     context.work_experience = {"post": puesto, "company": empresa}
     context.data.add_curriculum(context.work_experience)
 
 
-@then("Confirma los datos registrados\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+@then("Confirma los datos registrados “(?P<empresa>.+)”\.")
+def step_impl(context, empresa):
+
+    context.empresa = empresa
+    found = context.data.confirm_added_data(context.empresa)
+    assert found

@@ -7,7 +7,7 @@ Feature: Añadir Curriculum Vitae
    When Busca el empleado por su "<identificacion>"
    And Accede a su datos personales y añade su "<fotografia>"
    And Añade su experiencia laboral, su formacion y sus habiliadades “<puesto>”, “<empresa>”
-   Then Confirma los datos registrados.
+   Then Confirma los datos registrados “<empresa>”.
 
     Examples:
     |identificacion|puesto|empresa|categoria|fotografia|

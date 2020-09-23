@@ -12,5 +12,7 @@
   "other_email": "@hrm.es",
   "note": "",
   "status": "Activo",
-  "year": 2000
+  "year_from": 1999,
+  "year_to": 2018,
+  "comment": ""
   }
