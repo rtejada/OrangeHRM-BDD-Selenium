@@ -14,5 +14,8 @@
   "status": "Activo",
   "year_from": 1999,
   "year_to": 2018,
-  "comment": ""
+  "comment": "",
+  "money": "Euro",
+  "period": "Mensual",
+  "account_type": "Ahorros"
   }

@@ -7,6 +7,7 @@ from random import randint
 
 class ContactData(OrangeBasePage):
 
+    SCREEN_MENU = (By.ID, 'empPic')
     CONTACT_INFO = (By.LINK_TEXT, 'Datos de contacto')
     BUTTON_EDIT = (By.ID, 'btnSave')
     CONTACT_STREET1 = (By.ID, 'contact_street1')

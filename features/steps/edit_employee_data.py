@@ -38,16 +38,15 @@ def search_data_registered_employee(context, id_employee):
     context.edit = edit
 
 
-@step('Edita sus datos personales y añade archivo adjunto "(?P<img>.+)"')
-def edit_personal_data(context, img):
-    context.img = img
+@step('Edita sus datos personales')
+def edit_personal_data(context):
+
     context.edit.personal_data(context.id)
-    context.edit.add_image(context.img)
 
 
-@step('Añade Datos de Contacto y archivo adjunto "(?P<img>.+)"')
-def add_contact_details_and_file_attachment(context, img):
-    context.img = img
+@step('Añade Datos de Contacto')
+def add_contact_details_and_file_attachment(context):
+
     context.edit.add_contact_details()
 
 

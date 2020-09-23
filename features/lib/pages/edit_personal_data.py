@@ -1,7 +1,6 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.staff_details import ContactData
 from lib.pages.data_employee import DataEmployeeEdit
-from lib.pages.pages_search.add_file import AddFile
 from lib.pages.add_employees_job import EmployeeWorkplaceData
 from lib.pages.pages_search.confirm_registration import ConfirmRegisters
 from selenium.webdriver.common.by import By
@@ -13,6 +12,7 @@ class EditDataEmployees(OrangeBasePage):
 
     MODULE_INFO_PERSONAL = (By.LINK_TEXT, 'Módulo de Información Personal')
     EMPLOYEE = 'menu_pim_viewEmployeeList'
+    FORM_EMP_PERSONAL_DETAILS = (By.ID, 'frmEmpPersonalDetails')
     BUTTON_LIST_EMPLOYEES = (By.ID, EMPLOYEE)
     ID_EMPLOYEE = (By.ID, 'empsearch_id')
     SEARCH_EMPLOYEE = (By.ID, 'searchBtn')
@@ -48,13 +48,9 @@ class EditDataEmployees(OrangeBasePage):
         edit = DataEmployeeEdit(self.driver)
         edit.data_employee(id_employee)
 
-    def add_image(self, img):
-
-        upload_file = AddFile(self.driver)
-        upload_file.add_img(img)
-
     def add_contact_details(self):
 
+        self.wait_selector_visible(self.FORM_EMP_PERSONAL_DETAILS)
         add = ContactData(self.driver)
         add.data_of_contact()
 

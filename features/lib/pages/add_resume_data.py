@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.add_work_experience import CurriculumVitae
+from lib.pages.pages_search.confirm_registration import ConfirmRegisters
 import os
 
 
@@ -20,7 +21,7 @@ class AddingCurriculumData(OrangeBasePage):
     SECTION_WORK_EXPERIENCE = (By.ID, 'sectionWorkExperience')
     WORK_CHECKBOX = (By.ID, 'workCheckAll')
     TABLE_ROWS = (By.XPATH, '//*[@id="frmDelWorkExperience"]/table/tbody/tr')
-    NAME_SELECTOR = '//*[@id="frmDelWorkExperience"]/table/tbody/'
+    FILE_SELECTOR = '//*[@id="frmDelWorkExperience"]/table/tbody/'
     COL_SELECTOR = '/td[2]'
     LIST_COMPANY = []
 
@@ -56,15 +57,12 @@ class AddingCurriculumData(OrangeBasePage):
 
     def confirm_added_data(self, company):
 
-        self.wait_selector_visible(self.SECTION_WORK_EXPERIENCE)
-        self.wait_button_clickable(self.WORK_CHECKBOX)
-        rows_count = len(self.driver.find_elements(*self.TABLE_ROWS))
-
-        for a in range(1, rows_count + 1):
-            value = self.driver.find_element(By.XPATH, (self.NAME_SELECTOR + 'tr[' + str(a) + ']' + self.COL_SELECTOR))
-
-            self.LIST_COMPANY.append(value.text)
-
-        return company in self.LIST_COMPANY
+        data = ConfirmRegisters(self.driver)
+        data.section_work = self.SECTION_WORK_EXPERIENCE
+        data.data_form = self.WORK_CHECKBOX
+        data.table_rows_selector = self.TABLE_ROWS
+        data.file_selector = self.FILE_SELECTOR
+        data.col_selector = self.COL_SELECTOR
+        data.find_employee_records(company)
 
 
