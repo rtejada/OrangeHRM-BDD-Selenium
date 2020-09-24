@@ -63,6 +63,7 @@ class AddingCurriculumData(OrangeBasePage):
         data.table_rows_selector = self.TABLE_ROWS
         data.file_selector = self.FILE_SELECTOR
         data.col_selector = self.COL_SELECTOR
-        data.find_employee_records(company)
+        found = data.find_employee_records(company)
+        return found
 
 

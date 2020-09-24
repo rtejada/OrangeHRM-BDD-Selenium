@@ -24,7 +24,7 @@ def authorized_user(context):
 
 
 @step("Inicia sesion y accede al Modulo de Información Personal\.")
-def step_impl(context):
+def access_personal_information(context):
 
     start_session = StartSessionPage(context.driver)
     start_session.load()
@@ -35,7 +35,7 @@ def step_impl(context):
 
 
 @when('Busca el empleado por su "(?P<identificacion>.+)"')
-def step_impl(context, identificacion):
+def search_employee(context, identificacion):
 
     context.identification = identificacion
 
@@ -45,20 +45,20 @@ def step_impl(context, identificacion):
 
 
 @step('Accede a su datos personales y añade su "(?P<fotografia>.+)"')
-def step_impl(context, fotografia):
+def access_personal_data(context, fotografia):
 
     context.photo = fotografia
     context.data.add_photo(context.photo)
 
 
 @step("Añade su experiencia laboral, su formacion y sus habiliadades “(?P<puesto>.+)”, “(?P<empresa>.+)”")
-def step_impl(context, puesto, empresa):
+def add_experience_training(context, puesto, empresa):
     context.work_experience = {"post": puesto, "company": empresa}
     context.data.add_curriculum(context.work_experience)
 
 
 @then("Confirma los datos registrados “(?P<empresa>.+)”\.")
-def step_impl(context, empresa):
+def confirm_recorded_data(context, empresa):
 
     context.empresa = empresa
     found = context.data.confirm_added_data(context.empresa)
