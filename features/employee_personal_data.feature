@@ -10,14 +10,15 @@ Feature: Información Personal
   Scenario Outline: Agregar Contactos de Emergencia
     Given Busca al empleado por "<id_employee>"
     And Accede a la opcion de contactos.
-    When Añade sus contacto de emergencia.
-    Then confirma datos del contacto.
+    When Añade sus contactos de emergencia.
+    Then Confirma los datos de contacto.
 
     Examples:
     |id_employee|
     |ID17323630|
     |ID10693967|
     |ID19337062|
+    |ID10593465|
 
   Scenario Outline: Agregar Cargas Familiares
     Given Localiza empleado por "<id_employee>".
@@ -30,3 +31,4 @@ Feature: Información Personal
     |ID17323630|
     |ID10693967|
     |ID19337062|
+    |ID10593465|
