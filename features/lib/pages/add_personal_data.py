@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from lib.pages.pages_search.confirm_registration import ConfirmRegisters
 from random import randint
 
+
 class DataPersonalEmployee(OrangeBasePage):
 
     RESULT_DATA = (By.ID, 'tableWrapper')
