@@ -1,6 +1,5 @@
 from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.add_loc_organization import LocationData
-from lib.pages.delete_register import DeleteRegister
 from selenium.webdriver.common.by import By
 
 
