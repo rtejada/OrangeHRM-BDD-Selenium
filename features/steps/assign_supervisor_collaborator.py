@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.edit_personal_data import EditDataEmployees
-from lib.pages.add_supervisor_collaborator import ReportTo
+from lib.pages.report_to_supervisor_collaborator import ReportTo
 import os
 
 use_step_matcher("re")
@@ -37,38 +37,67 @@ def access_information_module(context):
     context.add.select_menu()
 
 
-
 @given('Buscar empleado por "(?P<id_employee>.+)"')
 def search_employee(context, id_employee):
 
     context.id_employee = id_employee
     context.add.search_data_employee(id_employee)
 
-@step("Acceder a los detalles del empleado\.")
+
+@step("Acceder a los detalles internos del empleado\.")
 def access_employee_details(context):
 
     context.data = ReportTo(context.driver)
     context.data.report_to(context.id_employee)
 
 
-@when('Añade Reporta a Supervisor y Colaborador “(?P<supervisor>.+)”, "(?P<colaborador>.+)"\.')
-def add_report_to(context, supervisor, colaborador):
-    context.report = {"supervisor": supervisor, "collaborator": colaborador}
-    context.data.add_supervisor(context.report)
-    context.data.add_collaborator(context.report)
+@when('Añade Reporta a Supervisor “(?P<supervisor>.+)”\.')
+def add_report_to(context, supervisor):
+    context.supervisor = supervisor
+    context.data.add_supervisor(context.supervisor)
 
 
 @then("Confirmar los datos del supervisor añadido\.")
-def confirm_data_supervisor_collaborator_added(context):
+def confirm_data_supervisor_added(context):
 
-    found = context.data.confirm_added_supervisor_data(context.report["supervisor"])
+    found = context.data.confirm_added_supervisor_data(context.supervisor)
     assert found
+
+
+@step("Eliminar datos del supervisor añadido\.")
+def delete_data_supervisor(context):
+
+    context.data.delete_supervisor()
+
+
+@given('Buscar empleado por su "(?P<id_employee>.+)"')
+def search_employee(context, id_employee):
+
+    context.id_employee = id_employee
+    context.add.search_data_employee(id_employee)
+
+
+@step("Acceder a sus datos internos")
+def access_employee_details(context):
+
+    context.data = ReportTo(context.driver)
+    context.data.report_to(context.id_employee)
+
+
+@when('Añadir Reporta a Colaborador"(?P<colaborador>.+)"')
+def add_report_to(context, colaborador):
+    context.collaborator = colaborador
+    context.data.add_collaborator(context.collaborator)
 
 
 @then("Confirmar datos del colaborador añadido\.")
-def step_impl(context):
+def confirm_data_collaborator_added(context):
 
-    found = context.data.confirm_added_collaborator_data(context.report["collaborator"])
+    found = context.data.confirm_added_collaborator_data(context.collaborator)
     assert found
 
 
+@step("Elimnar datos del colaborador añadido\.")
+def delete_data_collaborator(context):
+
+    context.data.delete_collaborator()

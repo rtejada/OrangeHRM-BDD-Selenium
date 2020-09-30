@@ -6,16 +6,26 @@ Feature: Asignar Supervisor y Colaborador
     And Va al módulo de información personal.
 
 
-  Scenario Outline: En los Detalles Añadir Reporta a
+  Scenario Outline: En los Detalles de Reporta a: Añadir Supervisor
     Given Buscar empleado por "<id_employee>"
-    And Acceder a los detalles del empleado.
-    When Añade Reporta a Supervisor y Colaborador “<supervisor>”, "<colaborador>".
+    And Acceder a los detalles internos del empleado.
+    When Añade Reporta a Supervisor “<supervisor>”.
     Then Confirmar los datos del supervisor añadido.
-    Then Confirmar datos del colaborador añadido.
+    And Eliminar datos del supervisor añadido.
+
 
     Examples:
-    |id_employee|supervisor|colaborador|
-    |ID19260914|Pedro-18201 BGAOFYJIP CSLDRJueF|Diego-18348 BlQZW6Xc0 CCLiZIQVW|
-    |ID10390140|Pedro-18201 BGAOFYJIP CSLDRJueF|Diego-18348 BlQZW6Xc0 CCLiZIQVW|
-    |ID1974421|Pedro-18201 BGAOFYJIP CSLDRJueF|Diego-18348 BlQZW6Xc0 CCLiZIQVW|
-    |ID2420339|Pedro-18201 BGAOFYJIP CSLDRJueF|Diego-18348 BlQZW6Xc0 CCLiZIQVW|
+    |id_employee|supervisor|
+    |ID2420339|Pedro-18201 BGAOFYJIP CSLDRJueF|
+
+
+  Scenario Outline: En los Detalles de Reporta a: Añadir Colaborador
+    Given Buscar empleado por su "<id_employee>"
+    And Acceder a sus datos internos
+    When Añadir Reporta a Colaborador"<colaborador>"
+    Then Confirmar datos del colaborador añadido.
+    And Elimnar datos del colaborador añadido.
+
+     Examples:
+    |id_employee|colaborador|
+    |ID2420339|Maria-4256 BGHQjSlmn CR7EDU2Q4|

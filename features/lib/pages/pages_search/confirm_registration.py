@@ -59,3 +59,4 @@ class ConfirmRegisters(OrangeBasePage):
 
         return element in self.list_data
 
+
