@@ -2,9 +2,9 @@
 Feature: Asignar Inmigraciones del Empleado
 
   Background:
-    Given Usuario con permisos asignados
-    And Inicia sesion en la aplicación
-    And Va al módulo de información personal.
+    Given Usuario con permisos se registra.
+    And Inicia una sesion.
+    And Accede al módulo Información Personal.
 
   Scenario Outline: Agregar Inmigración
     Given Buscar empleado por "<id_employee>".
@@ -14,7 +14,5 @@ Feature: Asignar Inmigraciones del Empleado
 
     Examples:
     |id_employee|
-    |ID17323630|
-    |ID10693967|
-    |ID10593465|
     |ID19337062|
+    |ID10593465|

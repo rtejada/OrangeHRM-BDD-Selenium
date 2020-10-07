@@ -12,6 +12,7 @@ use_step_matcher("re")
 
 @given("Usuario con permisos asignados")
 def user_assigned_permissions(context):
+
     load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
 
     arguments = os.getenv('CHROME_ARGS')
