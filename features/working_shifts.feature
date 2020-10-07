@@ -12,9 +12,10 @@ Feature: Administrar Turnos de Trabajo
     Then Confirma los turnos de trabajo Añadidos “<nom_turno>”
     And Eliminar Turno de Trabajo “<nom_turno>”
 
+
     Examples:
     |nom_turno|desde|hasta|empleado|empleados|
-    |Diurno|09:00 |18:00|Pepe-6508 B8bMAHjpg CNBIgaaHn|Diego-14060 BKYQKXR9T CRO7NZkA6|
-    |Tarde|15:45 |23:45|Pepe-6508 B8bMAHjpg CNBIgaaHn|Diego-14060 BKYQKXR9T CRO7NZkA6|
-    |Parcial-Tarde|15:00 |20:00|Pepe-6508 B8bMAHjpg CNBIgaaHn|Diego-14060 BKYQKXR9T CRO7NZkA6|
+    |Diurno-Completo|09:00 |18:00|Pablo-13086 BFgk2BNwN C8WLD9rMH|Pepe-16201 BQTPNBa5n CFgNEp4UY|
+    |Tarde-Completo|15:45 |23:45|Pedro-18201 BGAOFYJIP CSLDRJueF|Pepe-3549 BRBeNXU3c CYx9UaUAM|
+
 

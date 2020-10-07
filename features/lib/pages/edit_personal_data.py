@@ -3,6 +3,7 @@ from lib.pages.staff_details import ContactData
 from lib.pages.data_employee import DataEmployeeEdit
 from lib.pages.add_employees_job import EmployeeWorkplaceData
 from lib.pages.pages_search.confirm_registration import ConfirmRegisters
+from lib.data.query_employee import DataBase
 from selenium.webdriver.common.by import By
 import os
 import json
@@ -37,11 +38,20 @@ class EditDataEmployees(OrangeBasePage):
 
         self.click_by_javascript(self.EMPLOYEE)
 
-    def search_data_employee(self, id_employee):
+    def search_data_employee(self, employee_id):
 
-        self.fill_text_field(self.ID_EMPLOYEE, id_employee)
+        query = DataBase()
+        result = query.get_employee_by_id(employee_id)
 
-        self.click_button(self.SEARCH_EMPLOYEE)
+        if result is not None:
+            try:
+                self.fill_text_field(self.ID_EMPLOYEE, employee_id)
+
+                self.click_button(self.SEARCH_EMPLOYEE)
+            except Exception as e:
+                print('Access Error', e)
+        else:
+            print('The employee is does not exist')
 
     def personal_data(self, id_employee):
 

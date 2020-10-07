@@ -15,10 +15,9 @@ Feature: Información Personal
 
     Examples:
     |id_employee|
-    |ID17323630|
-    |ID10693967|
-    |ID19337062|
-    |ID10593465|
+    |ID1974421|
+    |ID19260914|
+
 
   Scenario Outline: Agregar Cargas Familiares
     Given Localiza empleado por "<id_employee>".
@@ -28,7 +27,6 @@ Feature: Información Personal
 
     Examples:
     |id_employee|
-    |ID17323630|
-    |ID10693967|
-    |ID19337062|
-    |ID10593465|
+    |ID1974421|
+    |ID19260914|
+
