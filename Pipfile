@@ -12,6 +12,8 @@ python-dotenv = "*"
 selenium = "*"
 random-word = "*"
 bs4 = "*"
+pymysql = "*"
+mysql-connector = "*"
 
 [requires]
 python_version = "3.7"
