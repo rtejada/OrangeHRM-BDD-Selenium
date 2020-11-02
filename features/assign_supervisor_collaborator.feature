@@ -9,23 +9,23 @@ Feature: Asignar Supervisor y Colaborador
   Scenario Outline: En los Detalles de Reporta a: Añadir Supervisor
     Given Buscar empleado por "<id_employee>"
     And Acceder a los detalles internos del empleado.
-    When Añade Reporta a Supervisor “<supervisor>”.
+    When Añade Reporta a Supervisor “<employee_number>”.
     Then Confirmar los datos del supervisor añadido.
     And Eliminar datos del supervisor añadido.
 
 
     Examples:
-    |id_employee|supervisor|
-    |ID2420339|Pedro-18201 BGAOFYJIP CSLDRJueF|
+    |id_employee|employee_number|
+    |ID2420339|153|
 
 
   Scenario Outline: En los Detalles de Reporta a: Añadir Colaborador
     Given Buscar empleado por su "<id_employee>"
     And Acceder a sus datos internos
-    When Añadir Reporta a Colaborador"<colaborador>"
+    When Añadir Reporta a Colaborador"<employee_number>"
     Then Confirmar datos del colaborador añadido.
     And Elimnar datos del colaborador añadido.
 
      Examples:
-    |id_employee|colaborador|
-    |ID2420339|Maria-4256 BGHQjSlmn CR7EDU2Q4|
+    |id_employee|employee_number|
+    |ID2420339|156|
