@@ -2,6 +2,7 @@ from lib.pages.pages_search.base_page import OrangeBasePage
 from selenium.webdriver.common.by import By
 from lib.pages.pages_search.confirm_registration import ConfirmRegisters
 from lib.pages.adding_monitory_data import AddingMonitoryData
+from lib.data.query_employee import DataBase
 
 
 class ReportTo(OrangeBasePage):
@@ -17,7 +18,7 @@ class ReportTo(OrangeBasePage):
     COLLABORATOR = (By.ID, 'reportto_subordinateName_empName')
     AC_RESULTS = (By.CLASS_NAME, 'ac_results')
     LIST_ROWS = (By.XPATH, "//div[@class='ac_results']/ul/li")
-    S_NAME = 'P'
+    RESULT_QUERY = ''
     C_NAME = 'M'
     REPORT_METHOD = (By.ID, 'reportto_reportingMethodType')
     METHOD_SUPERVISOR = 'Directo'
@@ -44,25 +45,28 @@ class ReportTo(OrangeBasePage):
         self.wait_selector_visible(self.MAIN_CONTAINER)
         self.click_button(self.REPORT_TO)
 
-    def add_supervisor(self, supervisor):
+    def add_supervisor(self, employee_number):
+
+        query = DataBase()
+        self.RESULT_QUERY = query.get_employee_number(employee_number)
+        firt_name = self.RESULT_QUERY[3]
+        full_name = self.RESULT_QUERY[3]+' '+self.RESULT_QUERY[4]+' '+self.RESULT_QUERY[2]
 
         s = AddingMonitoryData(self.driver)
         s.container_report_to = self.CONTAINER_REPORT_SUP_DETAILS
         s.add_report_to = self.ADD_SUP_DETAILS
         s.add_name = self.SUPERVISOR
-        s.first_letter = self.S_NAME
+        s.first_letter = firt_name[0]
         s.container_ac_results = self.AC_RESULTS
         s.list_rows = self.LIST_ROWS
         s.report_method = self.REPORT_METHOD
         s.value_method = self.METHOD_SUPERVISOR
         s.save = self.SAVE
-        s.adding_supervision_collaborator(supervisor)
+        s.adding_supervision_collaborator(full_name)
 
-    def confirm_added_supervisor_data(self, supervisor):
+    def confirm_added_supervisor_data(self):
 
-        name = supervisor[0:11]
-        first_name = supervisor[21:]
-        supervisor = name + first_name
+        supervisor = self.RESULT_QUERY[3]+' '+self.RESULT_QUERY[2]
         data = ConfirmRegisters(self.driver)
         data.section_work = self.CONTAINER_REPORT_SUP_DETAILS
         data.data_form = self.CHECK_ALl_SUP
@@ -79,25 +83,27 @@ class ReportTo(OrangeBasePage):
         self.wait_button_clickable(self.DELETE_SUPERVISOR)
         self.click_button(self.DELETE_SUPERVISOR)
 
-    def add_collaborator(self, collaborator):
+    def add_collaborator(self, employee_number):
 
+        query = DataBase()
+        self.RESULT_QUERY = query.get_employee_number(employee_number)
+        firt_name = self.RESULT_QUERY[3]
+        full_name = self.RESULT_QUERY[3] + ' ' + self.RESULT_QUERY[4] + ' ' + self.RESULT_QUERY[2]
         c = AddingMonitoryData(self.driver)
         c.container_report_to = self.CONTAINER_REPORT_COL_DETAILS
         c.add_report_to = self.ADD_COL_DETAILS
         c.add_name = self.COLLABORATOR
-        c.first_letter = self.C_NAME
+        c.first_letter = firt_name[0]
         c.container_ac_results = self.AC_RESULTS
         c.list_rows = self.LIST_ROWS
         c.report_method = self.REPORT_METHOD
         c.value_method = self.METHOD_COLLABORATOR
         c.save = self.SAVE
-        c.adding_supervision_collaborator(collaborator)
+        c.adding_supervision_collaborator(full_name)
 
-    def confirm_added_collaborator_data(self, collaborator):
+    def confirm_added_collaborator_data(self):
 
-        name = collaborator[0:11]
-        first_name = collaborator[21:]
-        collaborator = name + first_name
+        collaborator = self.RESULT_QUERY[3]+' '+self.RESULT_QUERY[2]
         data = ConfirmRegisters(self.driver)
         data.section_work = self.CONTAINER_REPORT_COL_DETAILS
         data.data_form = self.CHECK_ALl_COLLAB

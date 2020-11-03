@@ -52,16 +52,16 @@ def access_employee_details(context):
     context.data.report_to(context.id_employee)
 
 
-@when('Añade Reporta a Supervisor “(?P<supervisor>.+)”\.')
-def add_report_to(context, supervisor):
-    context.supervisor = supervisor
-    context.data.add_supervisor(context.supervisor)
+@when('Añade Reporta a Supervisor “(?P<employee_number>.+)”\.')
+def add_report_to(context, employee_number):
+    context.employee_number = employee_number
+    context.data.add_supervisor(context.employee_number)
 
 
 @then("Confirmar los datos del supervisor añadido\.")
 def confirm_data_supervisor_added(context):
 
-    found = context.data.confirm_added_supervisor_data(context.supervisor)
+    found = context.data.confirm_added_supervisor_data()
     assert found
 
 
@@ -85,16 +85,16 @@ def access_employee_details(context):
     context.data.report_to(context.id_employee)
 
 
-@when('Añadir Reporta a Colaborador"(?P<colaborador>.+)"')
-def add_report_to(context, colaborador):
-    context.collaborator = colaborador
-    context.data.add_collaborator(context.collaborator)
+@when('Añadir Reporta a Colaborador"(?P<employee_number>.+)"')
+def add_report_to(context, employee_number):
+    context.employee_number = employee_number
+    context.data.add_collaborator(context.employee_number)
 
 
 @then("Confirmar datos del colaborador añadido\.")
 def confirm_data_collaborator_added(context):
 
-    found = context.data.confirm_added_collaborator_data(context.collaborator)
+    found = context.data.confirm_added_collaborator_data()
     assert found
 
 

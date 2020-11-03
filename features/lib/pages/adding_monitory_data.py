@@ -21,7 +21,6 @@ class AddingMonitoryData(OrangeBasePage):
         element = self.driver.find_element(*self.add_name)
         element.click()
         element.send_keys(self.first_letter)
-
         self.wait_selector_visible(self.container_ac_results)
         rows = self.driver.find_elements(*self.list_rows)
 

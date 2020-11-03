@@ -2,6 +2,7 @@ from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.add_more_employee import AddMoreEmployee
 from lib.pages.delete_register import DeleteRegister
 from selenium.webdriver.common.by import By
+from lib.data.query_employee import DataBase
 
 
 class AddWorkingShift(OrangeBasePage):
@@ -26,6 +27,7 @@ class AddWorkingShift(OrangeBasePage):
     BUTTON_DELETE = (By.ID, 'btnDelete')
     SCREEN_DELETE = (By.ID, 'deleteConfModal')
     BUTTON_OK = (By.ID, 'dialogDeleteBtn')
+    RESULT_QUERY = ''
 
     def select_menu(self):
 
@@ -37,29 +39,32 @@ class AddWorkingShift(OrangeBasePage):
 
         self.menu_select_option(self.JOBS_TITLE_LISTS, self.WORK_SHIFTS)
 
-    def add_shift(self, workings_hours, employee):
+    def add_shift(self, workings_hours, employee_number):
+
+        query = DataBase()
+        self.RESULT_QUERY = query.get_employee_number(employee_number)
+        full_name = self.RESULT_QUERY[3] + ' ' + self.RESULT_QUERY[4] + ' ' + self.RESULT_QUERY[2]
 
         self.wait_button_clickable(self.BUTTON_ADD)
-
         self.click_button(self.BUTTON_ADD)
-
         self.wait_selector_visible(self.VISIBLE_TITLE)
 
         self.fill_text_field(self.SHIFT_NAME, workings_hours['nom_turno'])
-
         self.fill_select_field(self.FROM, workings_hours['desde'])
-
         self.fill_select_field(self.TO, workings_hours['hasta'])
-
-        self.fill_select_by_text(self.AVAILABLE_EMPLOYEES, employee)
+        self.fill_select_by_text(self.AVAILABLE_EMPLOYEES, full_name)
         self.click_button(self.ADD)
 
         self.send_enter_key(self.BUTTON_SAVE)
 
-    def more_employees(self, shift, employee):
+    def more_employees(self, shift, employee_number):
+
+        query = DataBase()
+        self.RESULT_QUERY = query.get_employee_number(employee_number)
+        full_name = self.RESULT_QUERY[3] + ' ' + self.RESULT_QUERY[4] + ' ' + self.RESULT_QUERY[2]
 
         work = AddMoreEmployee(self.driver)
-        work.more_shifts(shift, employee)
+        work.more_shifts(shift, full_name)
 
     def confirm_data(self, shift):
 

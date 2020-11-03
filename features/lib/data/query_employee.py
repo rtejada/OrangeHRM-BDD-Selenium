@@ -41,4 +41,20 @@ class DataBase:
         finally:
             self.connection.close()
 
+    def get_employee_number(self, employee_number):
+
+        try:
+            sql = 'SELECT * FROM hs_hr_employee WHERE emp_number=%s'
+            value = employee_number
+            self.cursor.execute(sql, value)
+            result = self.cursor.fetchone()
+
+            return result
+
+        except Exception as e:
+            self.connection.rollback()
+            print(f'Exception to get employee: {e}')
+
+        finally:
+            self.connection.close()
 
