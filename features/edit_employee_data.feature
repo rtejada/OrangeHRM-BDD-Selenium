@@ -13,10 +13,10 @@ Feature: Editar Datos Empleado
 
     Examples:
     |id_employee|titulo_puesto|ubicacion|categoria|img|
-    |ID17323630|ADMINISTRADOR|A4aDNuQgIV S.A.|Officials and Managers|image1.jpg|
-    |ID10693967|AUXILIAR|XQQxZOtB3N S.Coop.|Professionals|image2.jpg|
-    |ID10593465|GERENTE|PPQDGYX6MJ S.A.|Service Workers|neo.jpg|
-    |ID19337062|SUPERVISOR|TUf5PHPo1k S.L.|Technicians|image1.jpg|
+    |ID11270660|ADMINISTRADOR|A4aDNuQgIV S.A.|Officials and Managers|image1.jpg|
+    |ID13012924|GERENTE|PPQDGYX6MJ S.A.|Service Workers|neo.jpg|
+    |ID1282485|AUXILIAR|XQQxZOtB3N S.Coop.|Professionals|image2.jpg|
+    |ID2549418|SUPERVISOR|TUf5PHPo1k S.L.|Technicians|image1.jpg|
 
 
 
