@@ -10,8 +10,8 @@ Feature: Añadir Curriculum Vitae
    Then Confirma los datos registrados “<empresa>”.
 
     Examples:
-    |identificacion|puesto|empresa|categoria|fotografia|
-    |ID17323630|ADMINISTRADOR|IKEA|Officials and Managers|image1.jpg|
-    |ID10693967|AUXILIAR|CANON|Professionals|image2.jpg|
-    |ID10593465|GERENTE|YAHOO|Service Workers|neo.jpg|
-    |ID19337062|SUPERVISOR|SONY|Technicians|image1.jpg|
+    |identificacion|puesto|empresa|fotografia|
+    |ID17323630|ADMINISTRADOR|IKEA|image1.jpg|
+    |ID10693967|AUXILIAR|CANON|image2.jpg|
+    |ID10593465|GERENTE|YAHOO|neo.jpg|
+    |ID19337062|SUPERVISOR|SONY|image1.jpg|

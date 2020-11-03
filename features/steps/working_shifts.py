@@ -29,23 +29,22 @@ def user_with_admin_permissions(context):
 @step("Accede a la opcion Turnos de Trabajo")
 def access_work_shift_option(context):
 
-    work = AddWorkingShift(context.driver)
-    work.select_menu()
-    context.work = work
+    context.work = AddWorkingShift(context.driver)
+    context.work.select_menu()
 
 
-@when('Agrega Turnos de Trabajo “(?P<nom_turno>.+)”, "(?P<desde>.+)", "(?P<hasta>.+)", "(?P<empleado>.+)"')
-def add_shift(context, nom_turno, desde, hasta, empleado):
+@when('Agrega Turnos de Trabajo “(?P<nom_turno>.+)”, "(?P<desde>.+)", "(?P<hasta>.+)", "(?P<empleado_1>.+)"')
+def add_shift(context, nom_turno, desde, hasta, empleado_1):
     context.workings_hours = {'nom_turno': nom_turno, 'desde': desde, 'hasta': hasta}
-    context.employee = empleado
+    context.number_employee = empleado_1
 
-    context.work.add_shift(context.workings_hours, context.employee)
+    context.work.add_shift(context.workings_hours, context.number_employee)
 
 
-@step("Agrega mas empleado “(?P<nom_turno>.+)”, “(?P<empleados>.+)”")
-def add_more_employee(context, nom_turno, empleados):
+@step("Agrega mas empleado “(?P<nom_turno>.+)”, “(?P<empleado_2>.+)”")
+def add_more_employee(context, nom_turno, empleado_2):
     context.nom_turno = nom_turno
-    context.empleado = empleados
+    context.empleado = empleado_2
     context.work.more_employees(context.nom_turno, context.empleado)
 
 
