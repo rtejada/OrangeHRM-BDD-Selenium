@@ -1,11 +1,8 @@
 from behave import *
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.edit_personal_data import EditDataEmployees
 from lib.pages.report_to_supervisor_collaborator import ReportTo
-import os
+from lib.data.orangeHRM_open_chrome_driver import *
 
 use_step_matcher("re")
 
@@ -13,14 +10,7 @@ use_step_matcher("re")
 @given("Usuario con permisos asignados")
 def user_assigned_permissions(context):
 
-    load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
-
-    arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(";")
-    options = Options()
-    for i in args:
-        options.add_argument(i)
-    context.driver = webdriver.Chrome(options=options)
+    context.driver = get_driver()
 
 
 @step("Inicia sesion en la aplicación")
@@ -52,9 +42,9 @@ def access_employee_details(context):
     context.data.report_to(context.id_employee)
 
 
-@when('Añade Reporta a Supervisor “(?P<employee_number>.+)”\.')
-def add_report_to(context, employee_number):
-    context.employee_number = employee_number
+@when('Añade Reporta a Supervisor “(?P<supervisor_number>.+)”\.')
+def add_report_to(context, supervisor_number):
+    context.employee_number = supervisor_number
     context.data.add_supervisor(context.employee_number)
 
 
@@ -85,9 +75,9 @@ def access_employee_details(context):
     context.data.report_to(context.id_employee)
 
 
-@when('Añadir Reporta a Colaborador"(?P<employee_number>.+)"')
-def add_report_to(context, employee_number):
-    context.employee_number = employee_number
+@when('Añadir Reporta a Colaborador"(?P<collaborator_number>.+)"')
+def add_report_to(context, collaborator_number):
+    context.employee_number = collaborator_number
     context.data.add_collaborator(context.employee_number)
 
 
@@ -98,7 +88,7 @@ def confirm_data_collaborator_added(context):
     assert found
 
 
-@step("Elimnar datos del colaborador añadido\.")
+@step("Eliminar datos del colaborador añadido\.")
 def delete_data_collaborator(context):
 
     context.data.delete_collaborator()

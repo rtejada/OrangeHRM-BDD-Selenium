@@ -1,10 +1,7 @@
 from behave import *
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.add_jobs import AddNewJobs
-import os
+from lib.data.orangeHRM_open_chrome_driver import *
 
 use_step_matcher("re")
 
@@ -12,17 +9,12 @@ use_step_matcher("re")
 @given("Un usuario abre la aplicación OrangeHRM")
 def step_impl(context):
 
-    load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
-    arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(";")
-    options = Options()
-    for i in args:
-        options.add_argument(i)
-    context.driver = webdriver.Chrome(options=options)
+    context.driver = get_driver()
 
 
 @given("Usuario registrado\.")
 def Registered_user(context):
+
     start_session = StartSessionPage(context.driver)
     start_session.load()
     start_session.login_user()

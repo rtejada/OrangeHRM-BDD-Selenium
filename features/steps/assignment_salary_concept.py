@@ -1,10 +1,7 @@
 from behave import *
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.salary_concept import SalaryConcept
-import os
+from lib.data.orangeHRM_open_chrome_driver import *
 
 use_step_matcher("re")
 
@@ -12,14 +9,7 @@ use_step_matcher("re")
 @given("Usuario administrador registrado\.")
 def step_impl(context):
 
-    load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
-
-    arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(";")
-    options = Options()
-    for i in args:
-        options.add_argument(i)
-    context.driver = webdriver.Chrome(options=options)
+    context.driver = get_driver()
 
 
 @step("Inicia sesion y accede a la opcion correspondiente\.")
@@ -33,6 +23,7 @@ def step_impl(context):
     add.select_menu()
     context.add = add
 
+
 @when("Busca y selecciona empleado por “(?P<id_employee>.+)”")
 def step_impl(context, id_employee):
 
@@ -45,6 +36,7 @@ def step_impl(context):
 
     context.add.open_salary_option()
 
+
 @step('Añade salario segun escala salarial "(?P<escala>.+)", "(?P<monto>.+)"')
 def step_impl(context, escala, monto):
 
@@ -54,7 +46,6 @@ def step_impl(context, escala, monto):
 
 @then("Confirma componente salarial registrado")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+
+    found = context.add.confirm_salary_component(context.salary_component)
+    assert found

@@ -13,7 +13,7 @@ class EmployeeWorkplaceData(OrangeBasePage):
     JOB_CATEGORY = (By.ID, 'job_eeo_category')
     JOB_DATE = (By.ID, 'job_joined_date')
     CALENDAR = (By.ID, 'ui-datepicker-div')
-    DATE_ENTRY = (By.XPATH, '//*[@id="ui-datepicker-div"]/table/tbody/tr[1]/td[5]/a')
+    DATE_ENTRY = (By.XPATH, '//*[@id="ui-datepicker-div"]/table/tbody/tr[3]/td[3]/a')
     JOB_LOCATION = (By.ID, 'job_location')
     JOB_CONTRACT_START_DATE = (By.ID, 'job_contract_start_date')
     BUTTON_SAVE = (By.ID, 'btnSave')
@@ -43,5 +43,6 @@ class EmployeeWorkplaceData(OrangeBasePage):
         self.click_button(self.JOB_CONTRACT_START_DATE)
         self.wait_selector_visible(self.CALENDAR)
         self.wait_button_clickable(self.DATE_ENTRY)
+        self.click_button(self.DATE_ENTRY)
         self.click_button(self.BUTTON_SAVE)
 

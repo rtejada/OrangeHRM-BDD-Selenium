@@ -1,28 +1,20 @@
 from behave import *
-from dotenv import load_dotenv
-import os
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
 from lib.pages.init_session import StartSessionPage
 from lib.pages.edit_personal_data import EditDataEmployees
+from lib.data.orangeHRM_open_chrome_driver import *
 
 use_step_matcher("re")
 
 
 @given("Usuario con permisos registrado\.")
 def authorized_user(context):
-    load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
 
-    arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(";")
-    options = Options()
-    for i in args:
-        options.add_argument(i)
-    context.driver = webdriver.Chrome(options=options)
+    context.driver = get_driver()
 
 
 @step("Incia sesion en OrangeHRM\.")
 def begin_session(context):
+
     start_session = StartSessionPage(context.driver)
     start_session.load()
     start_session.login_user()

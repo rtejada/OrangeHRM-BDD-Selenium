@@ -5,8 +5,6 @@ import os
 
 class DataBase:
 
-    USERS_ID = []
-
     def __init__(self):
         load_dotenv(os.getcwd() + "/.env.orangeHRM")
 
@@ -46,6 +44,23 @@ class DataBase:
         try:
             sql = 'SELECT * FROM hs_hr_employee WHERE emp_number=%s'
             value = employee_number
+            self.cursor.execute(sql, value)
+            result = self.cursor.fetchone()
+
+            return result
+
+        except Exception as e:
+            self.connection.rollback()
+            print(f'Exception to get employee: {e}')
+
+        finally:
+            self.connection.close()
+
+    def get_salary_component(self, salary_component):
+
+        try:
+            sql = 'SELECT * FROM hs_hr_emp_basicsalary WHERE salary_component=%s'
+            value = salary_component
             self.cursor.execute(sql, value)
             result = self.cursor.fetchone()
 

@@ -1,24 +1,14 @@
 from behave import *
-import os
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from lib.pages.init_session import StartSessionPage
 from lib.pages.general_information import OrgInformation
-
+from lib.data.orangeHRM_open_chrome_driver import *
 use_step_matcher("re")
 
 
 @given("Usuario administrador conectado\.")
 def admin_user_connected(context):
-    load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
 
-    arguments = os.getenv('CHROME_ARGS')
-    args = arguments.split(";")
-    options = Options()
-    for i in args:
-        options.add_argument(i)
-    context.driver = webdriver.Chrome(options=options)
+    context.driver = get_driver()
 
     start_session = StartSessionPage(context.driver)
     start_session.load()
