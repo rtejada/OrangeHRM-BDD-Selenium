@@ -50,11 +50,10 @@ class ConfirmRegisters(OrangeBasePage):
 
         self.wait_selector_visible(self.section_work)
         self.wait_button_clickable(self.data_form)
-        rows_count = len(self.driver.find_elements(*self.table_rows_selector))
+        rows = len(self.driver.find_elements(*self.table_rows_selector))
 
-        for a in range(1, rows_count + 1):
-            value = self.driver.find_element(By.XPATH, (self.file_selector + 'tr[' + str(a) + ']' + self.col_selector))
-
+        for i in range(1, rows+1):
+            value = self.driver.find_element(By.XPATH, (self.file_selector + 'tr[' + str(i) + ']' + self.col_selector))
             self.list_data.append(value.text)
 
         return element in self.list_data

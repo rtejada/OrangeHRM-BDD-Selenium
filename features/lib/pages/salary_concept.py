@@ -1,7 +1,8 @@
-from lib.pages.pages_search.base_page import OrangeBasePage
-from lib.pages.add_salary import AddSalary
 from selenium.webdriver.common.by import By
+from lib.pages.add_salary import AddSalary
+from lib.pages.pages_search.base_page import OrangeBasePage
 from lib.pages.pages_search.confirm_registration import ConfirmRegisters
+from lib.data.query_employee import DataBase
 import os
 import json
 
@@ -14,14 +15,8 @@ class SalaryConcept(OrangeBasePage):
     BUTTON_LIST_EMPLOYEES = (By.ID, EMPLOYEE)
     ID_EMPLOYEE = (By.ID, 'empsearch_id')
     SEARCH_EMPLOYEE = (By.ID, 'searchBtn')
-    PERSONAL_DETAILS = (By.ID, 'ohrmList_chkSelectAll')
     SALARY = (By.LINK_TEXT, 'Salario/ Sueldo')
     ADD_SALARY = (By.ID, 'addSalary')
-    SALARY_LIST = (By.ID, 'salaryMiniList')
-    SALARY_CHECKBOX = (By.ID, 'salaryCheckAll')
-    TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="tblSalary"]/tbody/tr')
-    FILE_SELECTOR = '//*[@id="tblSalary"]/tbody/'
-    COL_SELECTOR = '/td[2]'
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -62,12 +57,17 @@ class SalaryConcept(OrangeBasePage):
         return salary_component
 
     def confirm_salary_component(self, salary_component):
-        data = ConfirmRegisters(self.driver)
-        data.section_work = self.SALARY_LIST
-        data.data_form = self.SALARY_CHECKBOX
-        data.table_rows_selector = self.TABLE_ROWS_SELECTOR
-        data.file_selector = self.FILE_SELECTOR
-        data.col_selector = self.COL_SELECTOR
-        data.find_employee_records(salary_component)
+
+        query = DataBase()
+        query_result = query.get_salary_component(salary_component)
+        if query_result is not None:
+            try:
+                if salary_component in query_result:
+                    return True
+            except Exception as e:
+                print(f'Exception to get salary component: {e}')
+
+        else:
+            return f'The salary component not exists: {salary_component}'
 
 
