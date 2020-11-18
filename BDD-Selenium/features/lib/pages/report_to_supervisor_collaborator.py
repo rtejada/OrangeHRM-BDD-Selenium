@@ -56,7 +56,7 @@ class ReportTo(OrangeBasePage):
         s.container_report_to = self.CONTAINER_REPORT_SUP_DETAILS
         s.add_report_to = self.ADD_SUP_DETAILS
         s.add_name = self.SUPERVISOR
-        s.first_letter = firt_name[0]
+        s.first_letter = firt_name[0:3]
         s.container_ac_results = self.AC_RESULTS
         s.list_rows = self.LIST_ROWS
         s.report_method = self.REPORT_METHOD
