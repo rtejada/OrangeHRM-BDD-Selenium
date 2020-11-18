@@ -22,7 +22,7 @@ class LocationData(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/info_corp_structure.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/info_corp_structure.json") as file:
             self.LOCATIONS = json.load(file)      
 
         self.first_name = self.LOCATIONS["first_name"] + self.random_letter(10)

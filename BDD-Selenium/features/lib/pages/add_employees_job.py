@@ -21,7 +21,7 @@ class EmployeeWorkplaceData(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/personal_details.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/personal_details.json") as file:
             self.DATA_EMPLOYEE = json.load(file)
 
         self.status = self.DATA_EMPLOYEE['status']

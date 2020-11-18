@@ -1,6 +1,6 @@
 counduit/tests/.env
 suitecrm/tests/.env
-features/lib/data/.env.orangeHRM
+BDD-Selenium/features/lib/data/.env.orangeHRM
 .env.orangeHRM
 .idea/
 .idea

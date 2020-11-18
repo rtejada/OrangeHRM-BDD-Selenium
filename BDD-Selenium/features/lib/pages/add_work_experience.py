@@ -22,7 +22,7 @@ class CurriculumVitae(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/personal_details.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/personal_details.json") as file:
             self.DATA_EMPLOYEE = json.load(file)
 
         self.year_from = self.DATA_EMPLOYEE['year_from']

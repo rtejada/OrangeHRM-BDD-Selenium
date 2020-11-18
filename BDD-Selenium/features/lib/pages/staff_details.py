@@ -26,7 +26,7 @@ class ContactData(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/personal_details.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/personal_details.json") as file:
             self.PERSONAL_DATA = json.load(file)
 
         self.address_1 = self.PERSONAL_DATA['address_1'] + ' ' + self.random_letter(5)

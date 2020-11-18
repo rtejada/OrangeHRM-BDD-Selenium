@@ -32,7 +32,7 @@ class DataEmployeeEdit(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/data_users.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/data_users.json") as file:
             self.DATA_EMPLOYEE = json.load(file)
 
         self.ADDITIONAL_ID = self.DATA_EMPLOYEE['other_id'] + str(randint(1, 90000000))
