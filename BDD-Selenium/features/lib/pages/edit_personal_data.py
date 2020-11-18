@@ -25,7 +25,7 @@ class EditDataEmployees(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/data_users.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/data_users.json") as file:
             self.DATA_EMPLOYEE = json.load(file)
 
         self.CODE_EMPLOYEE = self.DATA_EMPLOYEE['id_employee']

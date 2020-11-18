@@ -6,7 +6,7 @@ import os
 
 def get_driver():
 
-    load_dotenv(os.getcwd() + "/features/lib/data/.env.orangeHRM")
+    load_dotenv(os.getcwd() + "/BDD-Selenium/features/lib/data/.env.orangeHRM")
 
     arguments = os.getenv('CHROME_ARGS')
     args = arguments.split(";")
@@ -17,4 +17,6 @@ def get_driver():
     driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(3000)
     return driver
+
+
 

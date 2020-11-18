@@ -23,7 +23,7 @@ class AddSalary(OrangeBasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        with open(os.getcwd() + "/features/lib/data/personal_details.json") as file:
+        with open(os.getcwd() + "/BDD-Selenium/features/lib/data/personal_details.json") as file:
             self.PERSONAL_DATA = json.load(file)
 
         self.salary_component = self.random_letter(10)

@@ -37,7 +37,7 @@ class AddingCurriculumData(OrangeBasePage):
 
     def add_photo(self, img):
 
-        path = os.getcwd() + "/features/lib/data/images/"
+        path = os.getcwd() + "/BDD-Selenium/features/lib/data/images/"
         self.wait_selector_visible(self.PROFILE_PIC)
         self.click_button(self.CHANGE_PHOTO)
         self.wait_selector_visible(self.PHOTO_FILE)
