@@ -93,7 +93,7 @@ class ReportTo(OrangeBasePage):
         c.container_report_to = self.CONTAINER_REPORT_COL_DETAILS
         c.add_report_to = self.ADD_COL_DETAILS
         c.add_name = self.COLLABORATOR
-        c.first_letter = firt_name[0]
+        c.first_letter = firt_name[0:3]
         c.container_ac_results = self.AC_RESULTS
         c.list_rows = self.LIST_ROWS
         c.report_method = self.REPORT_METHOD
