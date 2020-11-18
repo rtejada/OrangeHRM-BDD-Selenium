@@ -18,7 +18,7 @@ class AddNewJobs(OrangeBasePage):
     SELECT_FILE = (By.ID, 'jobTitle_jobSpec')
     NOTE = (By.ID, 'jobTitle_note')
     BUTTON_SAVE = (By.ID, 'btnSave')
-    path = os.getcwd() + "/features/lib/data/images/"
+    path = os.getcwd() + "/BDD-Selenium/features/lib/data/images/"
 
     VISIBLE_TABLE_SCREEN = (By.XPATH, '//*[@id="resultTable"]/thead/tr/th[1]//input')
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="resultTable"]/tbody/tr')
