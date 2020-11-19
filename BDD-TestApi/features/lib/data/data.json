@@ -1,0 +1,10 @@
+{
+  "status": "Activo",
+  "maritalStatus": ["Single", "Married"],
+  "gender": ["F", "M"],
+  "nationality": "Spanish",
+  "jobTitle":["Gerente", "Supervisor", "Administrador", "Secretaria", "Auxiliar", "Técnico"]
+  "city": "Madrid",
+  "state": "Comunidad Madrid"
+  "country": "España"
+}
