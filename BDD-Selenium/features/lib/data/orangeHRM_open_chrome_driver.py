@@ -15,7 +15,7 @@ def get_driver():
         options.add_argument(i)
 
     driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(3000)
+    driver.set_page_load_timeout(4000)
     return driver
 
 

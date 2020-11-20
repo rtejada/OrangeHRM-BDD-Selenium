@@ -20,3 +20,7 @@ Feature: Gestión de Empleados.
     Given Se establece el parametro requerido para actualizar los datos.
     When Los datos del empleado se actualizan con una petición PUT.
     Then Se Confirma estado 200 (datos del empleado actualizado con exito).
+    And Establecer parametros para recuperar los datos del usuario.
+    And  Recuperar Datos actualizados con una petición GET
+    And  Se confirman datos actualizados del empleado.
+
