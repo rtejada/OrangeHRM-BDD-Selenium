@@ -17,11 +17,11 @@ class ContactDetails(GeneratorRandomData):
 
     def address_street1(self):
 
-        return self.random_name(8) + 'S/N'
+        return 'Belg. St. ' + self.random_name(5) + ' S/N'
 
     def address_street2(self):
 
-        return self.random_name(8) + 'S/N'
+        return 'Lower.St. ' + self.random_name(5) + ' S/N'
 
     def city(self):
 

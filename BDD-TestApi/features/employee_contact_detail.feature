@@ -5,27 +5,33 @@ Feature: Gestión de Datos de Contacto.
   Quiero asegurarme, los pasos informados en la documentación, hacen
   lo que se supone que debe hacer...
 
-  Background: Establecer Conexión con el Background de Destino.
-    Given Se establece URL base con parametros de autentificación.
+  Background:
+    Given URL Base con parametros de Autentificación.
 
-  Scenario Outline: Recuperar y confirmar los datos del Empleado Creado.
+  Scenario Outline: Añadir Datos de Contacto de los Empleados.
     Given Establecer parametros para para añadir los datos de contacto del empleado <id_emp>.
     When Realizar nueva petición POST.
+    Then Confirmar Estado 200 (Datos de contacto añadidos).
+    And  Recuperar datos de contactos añadidos con una petición GET
+    And  Confirmar datos añadidos del empleado.
+
+    Examples:
+    |id_emp|
+    | 153  |
+    | 156  |
+
+  Scenario Outline: Actualizar Datos de Contacto de los Empleados.
+    Given Establecer parametros para para actualizar los datos de contacto del empleado <id_emp>.
+    When Realizar nueva petición PUT.
     Then Confirmar Estado 200 (Datos de contacto actualizados).
-    And  Establecer parametros para recuperar los datos de contacto del usuario.
-    And  Recuperar datos de contactos actualizados con una petición GET
+    And  Recuperar los datos de contactos actualizados con una petición GET
     And  Confirmar datos actualizados del empleado.
 
     Examples:
     |id_emp|
-    | 200  |
-    | 210  |
-    | 250  |
-    | 212  |
-    | 222  |
-    | 230  |
-    | 231  |
-    | 237  |
-    | 300  |
+    | 153  |
+    | 156  |
+
+
 
 
