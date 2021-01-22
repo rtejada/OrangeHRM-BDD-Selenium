@@ -2,7 +2,8 @@ counduit/tests/.env
 suitecrm/tests/.env
 BDD-Selenium/features/lib/data/.env.orangeHRM
 .env.orangeHRM
+.env.blinklearning
 .idea/
 .idea
-
+.zip
 venv/
